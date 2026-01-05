@@ -1,0 +1,1546 @@
+import { useState } from "react";
+import { useIntersectionObserver } from "../hooks/useScrollAnimation";
+
+// Import all images - Multiple images per project
+import brandingUTH1 from "../assets/our work/Branding and Packaging/Active UTH milk for Healthways/Screenshot 2025-12-31 155628.png";
+import brandingUTH2 from "../assets/our work/Branding and Packaging/Active UTH milk for Healthways/Screenshot 2025-12-31 155634.png";
+import boop from "../assets/Logo/BoopLogo.png";
+import brandingKoffelo1 from "../assets/our work/Branding and Packaging/Coffee Brand- Koffelo/Screenshot 2025-12-31 155520.png";
+
+import brandingKoffelo2 from "../assets/our work/Branding and Packaging/Coffee Brand- Koffelo/Screenshot 2025-12-31 155529.png";
+import brandingESL from "../assets/our work/Branding and Packaging/ESL Milk for Healthways/Screenshot 2025-12-31 155618.png";
+import brandingMilkshake1 from "../assets/our work/Branding and Packaging/Milkshake Brand  - Paras Enjoy/Screenshot 2025-12-31 155537.png";
+import brandingMilkshake2 from "../assets/our work/Branding and Packaging/Milkshake Brand  - Paras Enjoy/Screenshot 2025-12-31 155542.png";
+import brandingMozzarella from "../assets/our work/Branding and Packaging/Mozzarella Cheese packaging  Galacia/Screenshot 2025-12-31 155642.png";
+import brandingMustard1 from "../assets/our work/Branding and Packaging/Mustard Oil Packaging for Paras/Screenshot 2025-12-31 155550.png";
+import brandingMustard2 from "../assets/our work/Branding and Packaging/Mustard Oil Packaging for Paras/Screenshot 2025-12-31 155556.png";
+import logoDesign1 from "../assets/our work/Branding and Packaging/Logo Design/All about data.png";
+import logoDesign2 from "../assets/our work/Branding and Packaging/Logo Design/Click mania.png";
+import logoDesign3 from "../assets/our work/Branding and Packaging/Logo Design/Cold Brew.png";
+import logoDesign4 from "../assets/our work/Branding and Packaging/Logo Design/Data Decore.png";
+import logoDesign5 from "../assets/our work/Branding and Packaging/Logo Design/Entice.png";
+import logoDesign6 from "../assets/our work/Branding and Packaging/Logo Design/Galacia.png";
+import logoDesign7 from "../assets/our work/Branding and Packaging/Logo Design/Geniefie.png";
+import logoDesign8 from "../assets/our work/Branding and Packaging/Logo Design/Grannys.png";
+import logoDesign9 from "../assets/our work/Branding and Packaging/Logo Design/Informals.png";
+import logoDesign10 from "../assets/our work/Branding and Packaging/Logo Design/Jaipur Jadu.png";
+import logoDesign11 from "../assets/our work/Branding and Packaging/Logo Design/Koffelo.png";
+import logoDesign12 from "../assets/our work/Branding and Packaging/Logo Design/Medispjre.png";
+import logoDesign13 from "../assets/our work/Branding and Packaging/Logo Design/NBDA.png";
+import logoDesign14 from "../assets/our work/Branding and Packaging/Logo Design/NIrala greenhire.png";
+import logoDesign15 from "../assets/our work/Branding and Packaging/Logo Design/PPR ASAdham.png";
+import logoDesign16 from "../assets/our work/Branding and Packaging/Logo Design/PTC concert.png";
+import logoDesign17 from "../assets/our work/Branding and Packaging/Logo Design/Shandaar 75.png";
+import logoDesign18 from "../assets/our work/Branding and Packaging/Logo Design/arah.png";
+import emailerIndiaTV1 from "../assets/our work/Branding and Packaging/Emailer/Client India TV/Screenshot 2025-12-31 155844.png";
+import emailerIndiaTV2 from "../assets/our work/Branding and Packaging/Emailer/Client India TV/Screenshot 2025-12-31 155848.png";
+import emailerIndiaTV3 from "../assets/our work/Branding and Packaging/Emailer/Client India TV/Screenshot 2025-12-31 155854.png";
+import emailerIndiaTV4 from "../assets/our work/Branding and Packaging/Emailer/Client India TV/Screenshot 2025-12-31 155905.png";
+import emailerIndiaTV5 from "../assets/our work/Branding and Packaging/Emailer/Client India TV/Screenshot 2025-12-31 155912.png";
+import emailerIndiaTV6 from "../assets/our work/Branding and Packaging/Emailer/Client India TV/Screenshot 2025-12-31 155922.png";
+import emailerPTC1 from "../assets/our work/Branding and Packaging/Emailer/Client PTC Network/Screenshot 2025-12-31 155932.png";
+import emailerPTC2 from "../assets/our work/Branding and Packaging/Emailer/Client PTC Network/Screenshot 2025-12-31 155940.png";
+
+import btlChristmas1 from "../assets/our work/BTL Activities/Christmas Mall Décor Pacific Mall – New Delhi/Screenshot 2025-12-31 154043.png";
+import btlChristmas2 from "../assets/our work/BTL Activities/Christmas Mall Décor Pacific Mall – New Delhi/Screenshot 2025-12-31 154050.png";
+import btlDiwali1 from "../assets/our work/BTL Activities/Diwali  Merchandising Box – Paras Dairy/Screenshot 2025-12-31 153811.png";
+import btlDiwali2 from "../assets/our work/BTL Activities/Diwali  Merchandising Box – Paras Dairy/Screenshot 2025-12-31 153818.png";
+import btlGanesh1 from "../assets/our work/BTL Activities/Ganesh Chathurti campaign with ABP Majha/Screenshot 2025-12-31 153620.png";
+import btlGanesh2 from "../assets/our work/BTL Activities/Ganesh Chathurti campaign with ABP Majha/Screenshot 2025-12-31 153624.png";
+import btlChromebook1 from "../assets/our work/BTL Activities/Google Chromebook Pan INDIA Roadshow/Screenshot 2025-12-31 154006.png";
+import btlChromebook2 from "../assets/our work/BTL Activities/Google Chromebook Pan INDIA Roadshow/Screenshot 2025-12-31 154014.png";
+import btlHero1 from "../assets/our work/BTL Activities/Hero Electric Pan India Road Show 6 Months Campaign/Screenshot 2025-12-31 154024.png";
+import btlHero2 from "../assets/our work/BTL Activities/Hero Electric Pan India Road Show 6 Months Campaign/Screenshot 2025-12-31 154032.png";
+import btlHoli1 from "../assets/our work/BTL Activities/Holi Merchandising Box – Paras Dairy/Screenshot 2025-12-31 153837.png";
+import btlHoli2 from "../assets/our work/BTL Activities/Holi Merchandising Box – Paras Dairy/Screenshot 2025-12-31 153844.png";
+
+import eventAirtel1 from "../assets/our work/event/Airtel Annual Leadership Conclave - Dubai/Screenshot 2025-12-26 174226.png";
+import eventAirtel2 from "../assets/our work/event/Airtel Annual Leadership Conclave - Dubai/Screenshot 2025-12-26 174238.png";
+import eventBacardi1 from "../assets/our work/event/Bacardi- NH7 Weekender Express Chandigarh/Screenshot 2025-12-26 175336.png";
+import eventBacardi2 from "../assets/our work/event/Bacardi- NH7 Weekender Express Chandigarh/Screenshot 2025-12-26 175355.png";
+import eventHP1 from "../assets/our work/event/HP Asia Employee Meet & Gala Night/Screenshot 2025-12-26 174514.png";
+import eventHP2 from "../assets/our work/event/HP Asia Employee Meet & Gala Night/Screenshot 2025-12-26 174520.png";
+import eventPTC1 from "../assets/our work/event/PTC Filmfare Awards Taj Hotel - Chandigarh/Screenshot 2025-12-26 175243.png";
+import eventPTC2 from "../assets/our work/event/PTC Filmfare Awards Taj Hotel - Chandigarh/Screenshot 2025-12-26 175306.png";
+import eventParas1 from "../assets/our work/event/Paras Annual Sales Meeting Mussoorie, 2024/Screenshot 2025-12-26 173955.png";
+import eventParas2 from "../assets/our work/event/Paras Annual Sales Meeting Mussoorie, 2024/Screenshot 2025-12-26 174000.png";
+import eventRangotsav1 from "../assets/our work/event/Rangotsav/Screenshot 2025-12-26 175318.png";
+import eventRangotsav2 from "../assets/our work/event/Rangotsav/Screenshot 2025-12-26 175326.png";
+
+import exhibPragati1 from "../assets/our work/Exhibition Stall/1350 Sq. Meter Stall at Pragati Maidan,/Screenshot 2025-12-26 181315.png";
+import exhibPragati2 from "../assets/our work/Exhibition Stall/1350 Sq. Meter Stall at Pragati Maidan,/Screenshot 2025-12-26 181322.png";
+import exhibAahar1 from "../assets/our work/Exhibition Stall/Aahar 2025, New Delhi/Screenshot 2025-12-26 180849.png";
+import exhibAahar2 from "../assets/our work/Exhibition Stall/Aahar 2025, New Delhi/Screenshot 2025-12-26 180857.png";
+import exhibAnuga1 from "../assets/our work/Exhibition Stall/Anuga 2024, Mumbai/Screenshot 2025-12-26 180702.png";
+import exhibAnuga2 from "../assets/our work/Exhibition Stall/Anuga 2024, Mumbai/Screenshot 2025-12-26 180839.png";
+import exhibJSW1 from "../assets/our work/Exhibition Stall/Exhibition Stall for JSW, 2016/Screenshot 2025-12-26 181258.png";
+import exhibJSW2 from "../assets/our work/Exhibition Stall/Exhibition Stall for JSW, 2016/Screenshot 2025-12-26 181307.png";
+import exhibIITF1 from "../assets/our work/Exhibition Stall/IITF 2024, New Delhi/Screenshot 2025-12-26 180949.png";
+import exhibIITF2 from "../assets/our work/Exhibition Stall/IITF 2024, New Delhi/Screenshot 2025-12-26 181119.png";
+
+import socialParas1 from "../assets/our work/social media/Paras Dairy/Screenshot 2025-12-26 172521.png";
+import socialParas2 from "../assets/our work/social media/Paras Dairy/Screenshot 2025-12-26 172526.png";
+import socialAmarUjala1 from "../assets/our work/social media/amar ujala/Screenshot 2025-12-26 172409.png";
+import socialAmarUjala2 from "../assets/our work/social media/amar ujala/Screenshot 2025-12-26 172418.png";
+import socialIndiaTV1 from "../assets/our work/social media/india tv/Screenshot 2025-12-26 172657.png";
+import socialIndiaTV2 from "../assets/our work/social media/india tv/Screenshot 2025-12-26 172707.png";
+import socialKoffelo1 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172806.png";
+import socialKoffelo2 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172815.png";
+import socialPTC1 from "../assets/our work/social media/PTC/Screenshot 2025-12-26 172450.png";
+import socialPTC2 from "../assets/our work/social media/PTC/Screenshot 2025-12-26 172501.png";
+import socialGeniefie1 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172558.png";
+import socialGeniefie2 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172608.png";
+
+// Modal Component
+const ImageModal = ({
+  isOpen,
+  project,
+  onClose,
+}: {
+  isOpen: boolean;
+  project: any;
+  onClose: () => void;
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (!isOpen || !project) return null;
+
+  const images = project.images || [];
+  const currentImage = images[currentIndex];
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div
+      className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-5xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="absolute top-0 left-0 right-0 z-10 p-6 flex justify-between items-start bg-gradient-to-b from-black to-transparent">
+          <div className="text-white">
+            <h3 className="text-3xl font-bold">{project.title}</h3>
+            <p className="text-amber-400 text-sm mt-1">{project.client}</p>
+            <p className="text-gray-400 text-xs mt-2">
+              {currentIndex + 1} of {images.length}
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-white hover:text-red-500 transition-colors text-3xl font-bold hover:scale-110"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Main Image with scale animation */}
+        <div className="relative bg-black rounded-lg overflow-hidden">
+          <img
+            src={currentImage}
+            alt={`${project.title} - ${currentIndex + 1}`}
+            className="w-full h-auto max-h-[70vh] object-contain animate-fadeIn"
+          />
+
+          {/* Image Counter Badge */}
+          <div className="absolute bottom-4 right-4 bg-amber-500 text-black px-4 py-2 rounded-full font-bold text-sm">
+            {currentIndex + 1}/{images.length}
+          </div>
+        </div>
+
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-between mt-6 gap-4">
+          <button
+            onClick={prevImage}
+            className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+          >
+            ← Previous
+          </button>
+
+          {/* Thumbnail Strip */}
+          <div className="flex gap-2 overflow-x-auto flex-1 py-2 px-2 bg-black/30 rounded-lg">
+            {images.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`flex-shrink-0 h-16 w-16 rounded-lg overflow-hidden border-2 transition-all hover:scale-110 ${
+                  idx === currentIndex
+                    ? "border-amber-500 scale-110 shadow-lg shadow-amber-500/50"
+                    : "border-gray-600 hover:border-amber-400 opacity-60 hover:opacity-100"
+                }`}
+              >
+                <img
+                  src={img}
+                  alt={`Thumbnail ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={nextImage}
+            className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Horizontal Carousel Component with Marquee
+const HorizontalCarousel = ({
+  images,
+}: // title,
+// subtitle,
+{
+  images: string[];
+  // title: string;
+  // subtitle: string;
+}) => {
+  return (
+    <div className="mb-20 animate-fade-in">
+      {/* <div className="mb-8">
+        <h3 className="text-2xl font-semibold text-slate-900 animate-slide-in-left">
+          {title}
+        </h3>
+        <p className="text-gray-600 text-lg mt-2 animate-slide-in-left delay-100">
+          {subtitle}
+        </p>
+      </div> */}
+
+      <div className="relative overflow-hidden rounded-lg">
+        <div className="flex gap-6 py-6 px-4 carousel-marquee hover:pause">
+          {/* Duplicate images for seamless loop */}
+          {[...images, ...images].map((img: string, idx: number) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 w-80 h-80 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer"
+            >
+              <img
+                src={img}
+                alt={`${""} ${idx + 1}`}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const WorkPage = () => {
+  const { isVisible: isBrandingVisible, setElement: setBrandingRef } =
+    useIntersectionObserver({ threshold: 0.1 });
+  const { isVisible: isEmailerVisible, setElement: setEmailerRef } =
+    useIntersectionObserver({ threshold: 0.1 });
+  const { isVisible: isBTLVisible, setElement: setBTLRef } =
+    useIntersectionObserver({ threshold: 0.1 });
+  const { isVisible: isEventsVisible, setElement: setEventsRef } =
+    useIntersectionObserver({ threshold: 0.1 });
+  const { isVisible: isExhibitionVisible, setElement: setExhibitionRef } =
+    useIntersectionObserver({ threshold: 0.1 });
+  const { isVisible: isSocialVisible, setElement: setSocialRef } =
+    useIntersectionObserver({ threshold: 0.1 });
+
+  // Portfolio data organized by category with ALL images
+  const portfolio = {
+    "Branding & Packaging": [
+      {
+        title: "Active UTH Milk",
+        client: "Healthways",
+        category: "Branding & Packaging",
+        image: brandingUTH1,
+        images: [brandingUTH1, brandingUTH2],
+      },
+      {
+        title: "Coffee Brand",
+        client: "Koffelo",
+        category: "Branding & Packaging",
+        image: brandingKoffelo1,
+        images: [brandingKoffelo1, brandingKoffelo2],
+      },
+      {
+        title: "ESL Milk",
+        client: "Healthways",
+        category: "Branding & Packaging",
+        image: brandingESL,
+        images: [brandingESL],
+      },
+      {
+        title: "Milkshake Brand",
+        client: "Paras Enjoy",
+        category: "Branding & Packaging",
+        image: brandingMilkshake1,
+        images: [brandingMilkshake1, brandingMilkshake2],
+      },
+      {
+        title: "Mozzarella Cheese",
+        client: "Galacia",
+        category: "Branding & Packaging",
+        image: brandingMozzarella,
+        images: [brandingMozzarella],
+      },
+      {
+        title: "Mustard Oil",
+        client: "Paras",
+        category: "Branding & Packaging",
+        image: brandingMustard1,
+        images: [brandingMustard1, brandingMustard2],
+      },
+      {
+        title: "Logo Design",
+        client: "Various",
+        category: "Branding & Packaging",
+        image: logoDesign1,
+        images: [logoDesign1],
+      },
+    ],
+    "BTL Activities": [
+      {
+        title: "Christmas Mall Décor",
+        client: "Pacific Mall",
+        category: "BTL Activities",
+        image: btlChristmas1,
+        images: [btlChristmas1, btlChristmas2],
+      },
+      {
+        title: "Diwali Merchandising",
+        client: "Paras Dairy",
+        category: "BTL Activities",
+        image: btlDiwali1,
+        images: [btlDiwali1, btlDiwali2],
+      },
+      {
+        title: "Ganesh Chathurti Campaign",
+        client: "ABP Majha",
+        category: "BTL Activities",
+        image: btlGanesh1,
+        images: [btlGanesh1, btlGanesh2],
+      },
+      {
+        title: "Google Chromebook Roadshow",
+        client: "Google",
+        category: "BTL Activities",
+        image: btlChromebook1,
+        images: [btlChromebook1, btlChromebook2],
+      },
+      {
+        title: "Hero Electric Roadshow",
+        client: "Hero Electric",
+        category: "BTL Activities",
+        image: btlHero1,
+        images: [btlHero1, btlHero2],
+      },
+      {
+        title: "Holi Merchandising",
+        client: "Paras Dairy",
+        category: "BTL Activities",
+        image: btlHoli1,
+        images: [btlHoli1, btlHoli2],
+      },
+    ],
+    Events: [
+      {
+        title: "Airtel Leadership Conclave",
+        client: "Airtel",
+        category: "Events",
+        image: eventAirtel1,
+        images: [eventAirtel1, eventAirtel2],
+      },
+      {
+        title: "Bacardi NH7 Weekender",
+        client: "Bacardi",
+        category: "Events",
+        image: eventBacardi1,
+        images: [eventBacardi1, eventBacardi2],
+      },
+      {
+        title: "HP Asia Employee Meet",
+        client: "HP Asia",
+        category: "Events",
+        image: eventHP1,
+        images: [eventHP1, eventHP2],
+      },
+      {
+        title: "PTC Filmfare Awards",
+        client: "PTC",
+        category: "Events",
+        image: eventPTC1,
+        images: [eventPTC1, eventPTC2],
+      },
+      {
+        title: "Paras Annual Meeting",
+        client: "Paras",
+        category: "Events",
+        image: eventParas1,
+        images: [eventParas1, eventParas2],
+      },
+      {
+        title: "Rangotsav Festival",
+        client: "Rangotsav",
+        category: "Events",
+        image: eventRangotsav1,
+        images: [eventRangotsav1, eventRangotsav2],
+      },
+    ],
+    "Exhibition Stalls": [
+      {
+        title: "Pragati Maidan Stall",
+        client: "Multi-Client",
+        category: "Exhibition Stalls",
+        image: exhibPragati1,
+        images: [exhibPragati1, exhibPragati2],
+      },
+      {
+        title: "Aahar 2025 Stall",
+        client: "Aahar",
+        category: "Exhibition Stalls",
+        image: exhibAahar1,
+        images: [exhibAahar1, exhibAahar2],
+      },
+      {
+        title: "Anuga 2024 Stall",
+        client: "Anuga",
+        category: "Exhibition Stalls",
+        image: exhibAnuga1,
+        images: [exhibAnuga1, exhibAnuga2],
+      },
+      {
+        title: "JSW Exhibition Stall",
+        client: "JSW",
+        category: "Exhibition Stalls",
+        image: exhibJSW1,
+        images: [exhibJSW1, exhibJSW2],
+      },
+      {
+        title: "IITF 2024 Stall",
+        client: "IITF",
+        category: "Exhibition Stalls",
+        image: exhibIITF1,
+        images: [exhibIITF1, exhibIITF2],
+      },
+    ],
+    "Social Media": [
+      {
+        title: "Paras Dairy",
+        client: "Paras Dairy",
+        category: "Social Media",
+        image: socialParas1,
+        images: [socialParas1, socialParas2],
+      },
+      {
+        title: "Amar Ujala",
+        client: "Amar Ujala",
+        category: "Social Media",
+        image: socialAmarUjala1,
+        images: [socialAmarUjala1, socialAmarUjala2],
+      },
+      {
+        title: "India TV",
+        client: "India TV",
+        category: "Social Media",
+        image: socialIndiaTV1,
+        images: [socialIndiaTV1, socialIndiaTV2],
+      },
+      {
+        title: "Koffelo",
+        client: "Koffelo",
+        category: "Social Media",
+        image: socialKoffelo1,
+        images: [socialKoffelo1, socialKoffelo2],
+      },
+      {
+        title: "PTC",
+        client: "PTC",
+        category: "Social Media",
+        image: socialPTC1,
+        images: [socialPTC1, socialPTC2],
+      },
+      {
+        title: "Geniefie",
+        client: "Geniefie",
+        category: "Social Media",
+        image: socialGeniefie1,
+        images: [socialGeniefie1, socialGeniefie2],
+      },
+    ],
+  };
+
+  return (
+    <div className="pt-20">
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 overflow-hidden">
+        {/* Animated Background Orbs */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500/25 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-fuchsia-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/15 rounded-full blur-3xl animate-float"></div>
+        </div>
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.1) 75%, rgba(255,255,255,.1) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.1) 75%, rgba(255,255,255,.1) 76%, transparent 77%, transparent)`,
+              backgroundSize: "50px 50px",
+            }}
+          ></div>
+        </div>
+
+        {/* Featured Image */}
+        <div className="relative z-10 w-full h-96 md:h-[500px]">
+          <img
+            src={boop}
+            alt="Featured Work"
+            className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent"></div>
+
+          {/* Overlay Text */}
+          <div className="absolute inset-0 flex items-end justify-center pb-12 z-20">
+            <div className="text-center animate-fade-in delay-100">
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+                Our{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-fuchsia-400">
+                  Creative
+                </span>{" "}
+                Work
+              </h1>
+              <p className="text-gray-200 text-lg max-w-2xl mx-auto">
+                Award-winning campaigns across 6+ categories, showcasing
+                strategic creativity and measurable impact
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Project Sections */}
+      <section className="py-20 md:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Branding Section */}
+          <div className="mb-32" ref={setBrandingRef}>
+            <div
+              className={`text-center mb-16 transition-all duration-1000 ${
+                isBrandingVisible ? "animate-fade-in" : "opacity-0"
+              }`}
+            >
+              <div className="inline-block mb-4">
+                <span className="glass px-4 py-2 rounded-full text-amber-500 font-semibold text-sm uppercase tracking-widest">
+                  Category 01
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+                BRANDING &<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-fuchsia-400 to-cyan-400">
+                  PACKAGING
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Creating distinctive brand identities that resonate with
+                audiences and tell compelling stories through thoughtful design
+                and strategic positioning.
+              </p>
+            </div>
+
+            <div
+              className={`grid md:grid-cols-2 gap-12 items-center mb-20 transition-all duration-1000 ${
+                isBrandingVisible ? "animate-fade-in" : "opacity-0"
+              }`}
+            >
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">Coffee Brand</h3>
+                <p className="text-amber-400 text-lg font-semibold">Koffelo</p>
+                <p className="text-gray-300 leading-relaxed">
+                  A complete brand redesign for a premium coffee brand,
+                  featuring elegant packaging design, visual identity system,
+                  and market positioning across multiple touchpoints.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4 animate-slide-in-left delay-100">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300">
+                  <img
+                    src={brandingKoffelo1}
+                    alt="Koffelo 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-fuchsia-500/20 transition-all duration-300">
+                  <img
+                    src={brandingKoffelo2}
+                    alt="Koffelo 2"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-200">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-fuchsia-500/20 transition-all duration-300">
+                  <img
+                    src={brandingMilkshake1}
+                    alt="Milkshake 1"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                  <img
+                    src={brandingMilkshake2}
+                    alt="Milkshake 2"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Milkshake Brand
+                </h3>
+                <p className="text-fuchsia-400 text-lg font-semibold">
+                  Paras Enjoy
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Vibrant packaging and brand identity for a premium milkshake
+                  line. Fresh design approach that captures youthful energy
+                  while maintaining premium positioning in the market.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Active UTH Milk
+                </h3>
+                <p className="text-green-400 text-lg font-semibold">
+                  Healthways
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Strategic branding for a health-focused dairy product.
+                  Designed to communicate nutrition and wellness benefits while
+                  building trust with health-conscious consumers.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300">
+                  <img
+                    src={brandingUTH1}
+                    alt="UTH 1"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300">
+                  <img
+                    src={brandingUTH2}
+                    alt="UTH 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
+                  <img
+                    src={brandingMozzarella}
+                    alt="Mozzarella"
+                    className="h-68 object-contain group-hover:scale-110 transition-transform duration-500 w-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Mozzarella Cheese
+                </h3>
+                <p className="text-yellow-400 text-lg font-semibold">Galacia</p>
+                <p className="text-gray-300 leading-relaxed">
+                  Premium cheese packaging design combining artisanal aesthetic
+                  with modern retail appeal. Strategic visual identity for
+                  specialty food positioning.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Mustard Oil Packaging
+                </h3>
+                <p className="text-orange-400 text-lg font-semibold">Paras</p>
+                <p className="text-gray-300 leading-relaxed">
+                  Bold and vibrant packaging design for premium mustard oil
+                  line. Heritage brand presentation meeting modern retail
+                  standards and consumer expectations.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+                  <img
+                    src={brandingMustard1}
+                    alt="Mustard 1"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300">
+                  <img
+                    src={brandingMustard2}
+                    alt="Mustard 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                  <img
+                    src={brandingESL}
+                    alt="ESL Milk"
+                    className="h-68 object-contain group-hover:scale-110 transition-transform duration-500 w-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">ESL Milk</h3>
+                <p className="text-blue-400 text-lg font-semibold">
+                  Healthways
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Extended shelf life milk branding strategy. Contemporary
+                  design communicating food safety, quality assurance, and
+                  nutritional value to modern consumers.
+                </p>
+              </div>
+            </div>
+
+            {/* Logo Design Carousel */}
+            <div className="mt-20">
+              <HorizontalCarousel
+                images={[
+                  logoDesign1,
+                  logoDesign2,
+                  logoDesign3,
+                  logoDesign4,
+                  logoDesign5,
+                  logoDesign6,
+                  logoDesign7,
+                  logoDesign8,
+                  logoDesign9,
+                  logoDesign10,
+                  logoDesign11,
+                  logoDesign12,
+                  logoDesign13,
+                  logoDesign14,
+                  logoDesign15,
+                  logoDesign16,
+                  logoDesign17,
+                  logoDesign18,
+                ]}
+                // title="Logo Design Collection"
+                // subtitle="Brand Identity & Logo Marks"
+              />
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-lg shadow-amber-500/20"></div>
+
+          {/* Emailer Section */}
+          <div className="mb-32" ref={setEmailerRef}>
+            <div
+              className={`text-center mb-16 transition-all duration-1000 ${
+                isEmailerVisible ? "animate-fade-in" : "opacity-0"
+              }`}
+            >
+              <div className="inline-block mb-4">
+                <span className="glass px-4 py-2 rounded-full text-fuchsia-500 font-semibold text-sm uppercase tracking-widest">
+                  Category 02
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+                EMAILER &<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-pink-400 to-amber-300">
+                  CAMPAIGNS
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Crafting engaging email designs that drive conversions and
+                deliver compelling brand messages directly to target audiences
+                across digital channels.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">India TV</h3>
+                <p className="text-pink-400 text-lg font-semibold">
+                  Digital Email Campaigns
+                </p>
+                {/* <p className="text-gray-300 leading-relaxed">
+                  Strategic email campaign designs tailored for broadcasting
+                  network with compelling visual storytelling, audience
+                  engagement strategies, and conversion-focused layouts.
+                </p> */}
+              </div>
+            </div>
+
+            {/* India TV Email Carousel */}
+            <HorizontalCarousel
+              images={[
+                emailerIndiaTV1,
+                emailerIndiaTV2,
+                emailerIndiaTV3,
+                emailerIndiaTV4,
+                emailerIndiaTV5,
+                emailerIndiaTV6,
+              ]}
+              // title=""
+              // subtitle=""
+            />
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300">
+                  <img
+                    src={emailerPTC1}
+                    alt="PTC 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                  <img
+                    src={emailerPTC2}
+                    alt="PTC 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">PTC Network</h3>
+                <p className="text-cyan-400 text-lg font-semibold">
+                  Email Marketing Designs
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Professional email design and digital marketing campaigns for
+                  entertainment networks, featuring responsive layouts, brand
+                  guidelines compliance, and audience targeting.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-fuchsia-400 to-transparent shadow-lg shadow-fuchsia-500/20"></div>
+
+          {/* BTL Activities Section */}
+          <div className="mb-32" ref={setBTLRef}>
+            <div
+              className={`text-center mb-16 transition-all duration-1000 ${
+                isBTLVisible ? "animate-fade-in" : "opacity-0"
+              }`}
+            >
+              <div className="inline-block mb-4">
+                <span className="glass px-4 py-2 rounded-full text-cyan-500 font-semibold text-sm uppercase tracking-widest">
+                  Category 03
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+                BTL ACTIVITIES &<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-400">
+                  EVENTS
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Transforming brands into immersive experiences through strategic
+                ground activations, experiential marketing, and engaging
+                consumer touchpoints.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-100">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Google Chromebook Roadshow
+                </h3>
+                <p className="text-blue-400 text-lg font-semibold">Google</p>
+                <p className="text-gray-300 leading-relaxed">
+                  Pan-India roadshow campaign showcasing the latest Chromebook
+                  innovations. Multi-city activation engaging thousands of
+                  consumers and demonstrating product capabilities.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                  <img
+                    src={btlChromebook1}
+                    alt="Chromebook 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300">
+                  <img
+                    src={btlChromebook2}
+                    alt="Chromebook 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in delay-200">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+                  <img
+                    src={btlDiwali1}
+                    alt="Diwali 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
+                  <img
+                    src={btlDiwali2}
+                    alt="Diwali 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Diwali Merchandising
+                </h3>
+                <p className="text-orange-400 text-lg font-semibold">
+                  Paras Dairy
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Festive campaign celebrating Diwali with specially designed
+                  merchandising boxes. Captured the spirit of the celebration
+                  while driving brand engagement and sales.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Christmas Mall Décor
+                </h3>
+                <p className="text-red-400 text-lg font-semibold">
+                  Pacific Mall
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Spectacular Christmas decorations transforming Pacific Mall
+                  into a festive wonderland. Large-scale visual merchandising
+                  creating immersive holiday shopping experience.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300">
+                  <img
+                    src={btlChristmas1}
+                    alt="Christmas 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300">
+                  <img
+                    src={btlChristmas2}
+                    alt="Christmas 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in delay-300">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
+                  <img
+                    src={btlGanesh1}
+                    alt="Ganesh 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                  <img
+                    src={btlGanesh2}
+                    alt="Ganesh 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Ganesh Chathurti Campaign
+                </h3>
+                <p className="text-purple-400 text-lg font-semibold">
+                  ABP Majha
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Culturally resonant festival campaign celebrating Ganesh
+                  Chathurti with authentic design and local engagement across
+                  media channels.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in delay-400">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Hero Electric Roadshow
+                </h3>
+                <p className="text-green-400 text-lg font-semibold">
+                  Hero Electric
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Comprehensive 6-month pan-India roadshow showcasing electric
+                  vehicle innovations. Multi-city activation driving awareness
+                  and test drives across major markets.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300">
+                  <img
+                    src={btlHero1}
+                    alt="Hero 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300">
+                  <img
+                    src={btlHero2}
+                    alt="Hero 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in delay-500">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                  <img
+                    src={btlHoli1}
+                    alt="Holi 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300">
+                  <img
+                    src={btlHoli2}
+                    alt="Holi 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Holi Merchandising
+                </h3>
+                <p className="text-rose-400 text-lg font-semibold">
+                  Paras Dairy
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Festival merchandising campaign bringing colors of Holi to
+                  retail spaces. Limited edition boxes designed to celebrate the
+                  festival of colors with style.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent shadow-lg shadow-purple-500/20"></div>
+
+          {/* Events Section */}
+          <div className="mb-32" ref={setEventsRef}>
+            <div
+              className={`text-center mb-16 transition-all duration-1000 ${
+                isEventsVisible ? "animate-fade-in" : "opacity-0"
+              }`}
+            >
+              <div className="inline-block mb-4">
+                <span className="glass px-4 py-2 rounded-full text-purple-500 font-semibold text-sm uppercase tracking-widest">
+                  Category 04
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+                EVENTS &<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-400 to-red-400">
+                  ACTIVATIONS
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Creating unforgettable brand moments through expertly executed
+                events, conferences, and experiential activations that leave
+                lasting impressions.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-100">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Airtel Leadership Conclave
+                </h3>
+                <p className="text-indigo-400 text-lg font-semibold">
+                  Airtel - Dubai
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Premium corporate event bringing together industry leaders in
+                  Dubai for strategic conversations and networking. Luxury event
+                  design with global standards.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300">
+                  <img
+                    src={eventAirtel1}
+                    alt="Airtel 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                  <img
+                    src={eventAirtel2}
+                    alt="Airtel 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-100">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-700/20 transition-all duration-300">
+                  <img
+                    src={eventBacardi1}
+                    alt="Bacardi 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300">
+                  <img
+                    src={eventBacardi2}
+                    alt="Bacardi 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Bacardi NH7 Weekender
+                </h3>
+                <p className="text-red-400 text-lg font-semibold">
+                  Bacardi - Chandigarh
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Music festival activation bringing entertainment and brand
+                  engagement to Chandigarh. Dynamic on-ground presence creating
+                  memorable brand experiences for thousands.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-200">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  HP Asia Employee Meet
+                </h3>
+                <p className="text-cyan-400 text-lg font-semibold">
+                  HP - Gala Night
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Corporate gala event celebrating HP Asia employee achievements
+                  and fostering company culture through upscale dining and
+                  entertainment experiences.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300">
+                  <img
+                    src={eventHP1}
+                    alt="HP 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-400/20 transition-all duration-300">
+                  <img
+                    src={eventHP2}
+                    alt="HP 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-300">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
+                  <img
+                    src={eventPTC1}
+                    alt="PTC 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+                  <img
+                    src={eventPTC2}
+                    alt="PTC 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  PTC Filmfare Awards
+                </h3>
+                <p className="text-yellow-400 text-lg font-semibold">
+                  Taj Hotel - Chandigarh
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Grand awards ceremony celebrating cinema excellence. Luxury
+                  venue setup with professional staging, lighting, and design
+                  for prestigious television broadcast.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-400">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Paras Annual Sales Meeting
+                </h3>
+                <p className="text-blue-400 text-lg font-semibold">
+                  Mussoorie - 2024
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Prestigious annual gathering of Paras Dairy sales team in
+                  scenic Mussoorie setting. Inspiring agenda with team building
+                  activities and strategic business planning.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                  <img
+                    src={eventParas1}
+                    alt="Paras 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300">
+                  <img
+                    src={eventParas2}
+                    alt="Paras 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in delay-500">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
+                  <img
+                    src={eventRangotsav1}
+                    alt="Rangotsav 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                  <img
+                    src={eventRangotsav2}
+                    alt="Rangotsav 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Rangotsav Festival
+                </h3>
+                <p className="text-purple-400 text-lg font-semibold">
+                  Rangotsav
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Vibrant cultural festival celebrating colors, art, and
+                  creativity. Large-scale experiential activation bringing
+                  communities together through artistic expression.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-red-400 to-transparent shadow-lg shadow-red-500/20"></div>
+
+          {/* Exhibition Stalls Section */}
+          <div className="mb-32" ref={setExhibitionRef}>
+            <div
+              className={`text-center mb-16 transition-all duration-1000 ${
+                isExhibitionVisible ? "animate-fade-in" : "opacity-0"
+              }`}
+            >
+              <div className="inline-block mb-4">
+                <span className="glass px-4 py-2 rounded-full text-red-500 font-semibold text-sm uppercase tracking-widest">
+                  Category 05
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+                EXHIBITION &<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-400 to-orange-400">
+                  STALLS
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Designing impactful exhibition spaces that command attention and
+                create memorable brand experiences at major industry events and
+                trade shows.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+              {[
+                {
+                  img1: exhibPragati1,
+                  img2: exhibPragati2,
+                  title: "Pragati Maidan Stall",
+                  // client: "Multi-Client",
+                },
+                {
+                  img1: exhibAahar1,
+                  img2: exhibAahar2,
+                  title: "Aahar 2025 Stall",
+                  // client: "Aahar",
+                },
+                {
+                  img1: exhibAnuga1,
+                  img2: exhibAnuga2,
+                  title: "Anuga 2024 Stall",
+                  // client: "Anuga",
+                },
+                {
+                  img1: exhibJSW1,
+                  img2: exhibJSW2,
+                  title: "JSW Exhibition Stall",
+                  // client: "JSW",
+                },
+                {
+                  img1: exhibIITF1,
+                  img2: exhibIITF2,
+                  title: "IITF 2024 Stall",
+                  // client: "IITF",
+                },
+              ].map((stall, idx) => (
+                <div
+                  key={idx}
+                  className={`group animate-fade-in delay-${(idx + 1) * 100}`}
+                >
+                  <div className="grid grid-cols-2 gap-2 mb-4 overflow-hidden rounded-lg">
+                    <img
+                      src={stall.img1}
+                      alt={`${stall.title} 1`}
+                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <img
+                      src={stall.img2}
+                      alt={`${stall.title} 2`}
+                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h4 className="text-lg font-semibold text-slate-900 mb-1">
+                    {stall.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm">{stall.client}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent shadow-lg shadow-green-500/20"></div>
+
+          {/* Social Media Section */}
+          <div ref={setSocialRef}>
+            <div
+              className={`text-center mb-16 transition-all duration-1000 ${
+                isSocialVisible ? "animate-fade-in" : "opacity-0"
+              }`}
+            >
+              <div className="inline-block mb-4">
+                <span className="glass px-4 py-2 rounded-full text-green-600 font-semibold text-sm uppercase tracking-widest">
+                  Category 06
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+                SOCIAL MEDIA &<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-teal-400 to-emerald-400">
+                  DIGITAL
+                </span>
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 animate-fade-in">
+              {[
+                {
+                  img1: socialParas1,
+                  img2: socialParas2,
+                  title: "Paras Dairy",
+                  // client: "Paras Dairy",
+                },
+                {
+                  img1: socialIndiaTV1,
+                  img2: socialIndiaTV2,
+                  title: "India TV",
+                  // client: "India TV",
+                },
+                {
+                  img1: socialKoffelo1,
+                  img2: socialKoffelo2,
+                  title: "Koffelo",
+                  // client: "Koffelo",
+                },
+                {
+                  img1: socialAmarUjala1,
+                  img2: socialAmarUjala2,
+                  title: "Amar Ujala",
+                  // client: "Amar Ujala",
+                },
+                {
+                  img1: socialPTC1,
+                  img2: socialPTC2,
+                  title: "PTC Network",
+                  // client: "PTC",
+                },
+                {
+                  img1: socialGeniefie1,
+                  img2: socialGeniefie2,
+                  title: "Geniefie",
+                  // client: "Geniefie",
+                },
+              ].map((social, idx) => (
+                <div
+                  key={idx}
+                  className={`group animate-fade-in delay-${(idx + 1) * 100}`}
+                >
+                  <div className="grid grid-cols-2 gap-2 mb-6 overflow-hidden rounded-lg">
+                    <img
+                      src={social.img1}
+                      alt={`${social.title} 1`}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <img
+                      src={social.img2}
+                      alt={`${social.title} 2`}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h4 className="text-lg font-semibold text-slate-900 mb-1">
+                    {social.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm">{social.client}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 text-white relative overflow-hidden">
+        {/* Animated Background Orbs */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-fuchsia-400/15 rounded-full blur-3xl animate-float"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-12">
+            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-amber-500 to-fuchsia-400 bg-clip-text text-transparent mb-4 group-hover:from-amber-300 group-hover:to-pink-300 transition-all duration-300">
+                {Object.keys(portfolio).length}
+              </div>
+              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
+                Categories
+              </p>
+            </div>
+            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 group-hover:from-cyan-300 group-hover:to-sky-300 transition-all duration-300">
+                {Object.values(portfolio).flat().length}+
+              </div>
+              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
+                Projects
+              </p>
+            </div>
+            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-500 bg-clip-text text-transparent mb-4 group-hover:from-fuchsia-300 group-hover:to-rose-300 transition-all duration-300">
+                100+
+              </div>
+              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
+                Brands Served
+              </p>
+            </div>
+            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent mb-4 group-hover:from-green-300 group-hover:to-teal-300 transition-all duration-300">
+                15+
+              </div>
+              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
+                Years
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
