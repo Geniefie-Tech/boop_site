@@ -1,15 +1,29 @@
-import { useScrollTrigger } from "../../hooks/useScrollAnimation";
+import { useEffect, useRef } from "react";
 import { Search, Pencil, Rocket } from "lucide-react";
+import { PageType } from "../../types";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { scrambleReveal, scrambleText } from "../../utils/scrambleText";
 
-export const ProcessSection = () => {
-  const { elementRef, hasTriggered } = useScrollTrigger();
+gsap.registerPlugin(ScrollTrigger);
+
+interface ProcessSectionProps {
+  onNavigate?: (page: PageType) => void;
+}
+
+export const ProcessSection = ({ onNavigate }: ProcessSectionProps) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const stepsRef = useRef<HTMLDivElement>(null);
 
   const steps = [
     {
       number: "01",
       title: "Discovery & Consultation",
       description:
-        "We dive deep into understanding your business, goals, target audience, and competitive landscape to create a strategic foundation.",
+        "We dive deep into understanding your business, goals, target audience to create a strategic foundation.",
       icon: Search,
     },
     {
@@ -28,173 +42,261 @@ export const ProcessSection = () => {
     },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Scramble text animation for title
+      if (titleRef.current) {
+        scrambleReveal(titleRef.current, {
+          start: "top 80%",
+          duration: 1.5,
+        });
+      }
+
+      // Scramble text animation for subtitle
+      if (subtitleRef.current) {
+        scrambleText(subtitleRef.current, {
+          start: "top 75%",
+          duration: 2,
+        });
+      }
+
+      // Steps animation
+      if (stepsRef.current) {
+        const stepCards = stepsRef.current.querySelectorAll(".step-card");
+
+        stepCards.forEach((card, index) => {
+          // Card reveal
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            delay: index * 0.2,
+            ease: "power3.out",
+          });
+
+          // Number animation
+          const numberElement = card.querySelector(".step-number");
+          if (numberElement) {
+            gsap.from(numberElement, {
+              scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+              scale: 0,
+              rotation: -180,
+              opacity: 0,
+              duration: 1,
+              delay: index * 0.2 + 0.3,
+              ease: "back.out(1.7)",
+            });
+          }
+
+          // Icon animation
+          const iconElement = card.querySelector(".step-icon");
+          if (iconElement) {
+            gsap.from(iconElement, {
+              scrollTrigger: {
+                trigger: card,
+                start: "top 75%",
+                toggleActions: "play none none reverse",
+              },
+              scale: 0,
+              rotation: 360,
+              opacity: 0,
+              duration: 0.8,
+              delay: index * 0.2 + 0.5,
+              ease: "back.out(1.7)",
+            });
+          }
+
+          // Content reveal
+          const contentElements = card.querySelectorAll(".step-content > *");
+          gsap.from(contentElements, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            delay: index * 0.2 + 0.6,
+            ease: "power3.out",
+          });
+        });
+
+        // Connection lines animation
+        const lines = stepsRef.current.querySelectorAll(".connection-line");
+        lines.forEach((line, index) => {
+          gsap.from(line, {
+            scrollTrigger: {
+              trigger: line,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+            scaleX: 0,
+            opacity: 0,
+            duration: 0.8,
+            delay: index * 0.3 + 0.5,
+            ease: "power2.inOut",
+          });
+        });
+      }
+
+      // Parallax effect on background
+      if (sectionRef.current) {
+        const bgElements = sectionRef.current.querySelectorAll(".bg-orb");
+        bgElements.forEach((orb, index) => {
+          gsap.to(orb, {
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+            y: index % 2 === 0 ? -100 : 100,
+            ease: "none",
+          });
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
-      ref={elementRef}
-      className="py-24 bg-gradient-to-b from-slate-800 to-slate-900 relative overflow-hidden"
+      ref={sectionRef}
+      className="relative bg-black text-white py-32 overflow-hidden"
     >
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-fuchsia-500/5 rounded-full blur-3xl"></div>
+      {/* Animated background */}
+      <div className="absolute inset-0">
+        <div className="bg-orb absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="bg-orb absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        {/* Header */}
+      {/* Grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
         <div
-          className={`text-center mb-20 transition-all duration-1000 ${
-            hasTriggered
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
-          <span className="inline-block text-amber-500 font-semibold text-sm uppercase tracking-widest mb-4 glass px-4 py-2 rounded-full">
-            Our Process
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 mb-6">
-            How We Work
+          className="w-full h-full"
+          style={{
+            backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5) 76%, transparent 77%, transparent)`,
+            backgroundSize: "60px 60px",
+          }}
+        ></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section heading */}
+        <div ref={headingRef} className="text-center mb-24">
+          <h2
+            ref={titleRef}
+            className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight"
+          >
+            From Idea to Impact
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p
+            ref={subtitleRef}
+            className="text-2xl md:text-3xl text-gray-400 font-light leading-relaxed max-w-3xl mx-auto"
+          >
             A proven methodology that delivers exceptional results, every time
           </p>
         </div>
 
-        {/* Steps Container */}
-        <div className="relative">
-          {/* Connection Line */}
-          <div
-            className={`absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-cyan-500/0 transform -translate-y-1/2 hidden lg:block ${
-              hasTriggered ? "opacity-100" : "opacity-0"
-            }`}
-          ></div>
+        {/* Process steps */}
+        <div ref={stepsRef} className="relative">
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <div key={index} className="relative">
+                  <div className="step-card group relative h-full">
+                    {/* Card container */}
+                    <div className="relative border border-white/10 rounded-3xl p-8 lg:p-10 min-h-[450px] flex flex-col bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm hover:border-white/30 transition-all duration-500 hover:transform hover:scale-105">
+                      {/* Large step number background */}
+                      <div className="step-number absolute top-8 right-8 text-[120px] font-bold text-white/5 leading-none pointer-events-none">
+                        {step.number}
+                      </div>
 
-          {/* Steps Grid */}
-          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-            {steps.map((step, index) => (
-              <ProcessCard
-                key={index}
-                step={step}
-                index={index}
-                hasTriggered={hasTriggered}
-                isLast={index === steps.length - 1}
-              />
-            ))}
+                      {/* Step number badge */}
+                      <div className="step-number mb-6 relative z-10">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-white/30 bg-black/50 backdrop-blur-sm group-hover:border-white group-hover:bg-white transition-all duration-500">
+                          <span className="text-2xl font-bold text-white group-hover:text-black transition-colors duration-500">
+                            {step.number}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Icon */}
+                      <div className="step-icon mb-6 relative z-10">
+                        <div className="inline-flex p-4 rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-500">
+                          <Icon className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="step-content flex-grow relative z-10">
+                        <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white group-hover:text-white transition-colors duration-500">
+                          {step.title}
+                        </h3>
+
+                        <p className="text-lg text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-500">
+                          {step.description}
+                        </p>
+                      </div>
+
+                      {/* Bottom accent line */}
+                      <div className="mt-6 relative z-10">
+                        <div className="h-1 bg-white/20 rounded-full group-hover:bg-white transition-all duration-500 transform scale-x-0 group-hover:scale-x-100 origin-left"></div>
+                      </div>
+
+                      {/* Glow effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/5 group-hover:to-white/0 rounded-3xl transition-all duration-500 pointer-events-none"></div>
+                    </div>
+                  </div>
+
+                  {/* Connection line between cards (desktop only) */}
+                  {index < steps.length - 1 && (
+                    <div className="connection-line hidden lg:block absolute top-1/2 -right-6 w-12 h-px bg-gradient-to-r from-white/30 to-transparent transform -translate-y-1/2 z-0"></div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Benefits Section */}
-        <div
-          className={`mt-20 pt-20 border-t border-slate-700/50 grid md:grid-cols-3 gap-8 transition-all duration-1000 ${
-            hasTriggered
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
-          }`}
-          style={{
-            transitionDelay: hasTriggered ? "600ms" : "0ms",
-          }}
-        >
-          {[
-            {
-              title: "Strategic Alignment",
-              desc: "Everything aligns with your business objectives",
-            },
-            {
-              title: "Collaborative Approach",
-              desc: "You're involved every step of the way",
-            },
-            {
-              title: "Data-Driven",
-              desc: "Decisions backed by insights and analytics",
-            },
-          ].map((benefit, i) => (
-            <div key={i} className="text-center">
-              <h4 className="text-white font-bold text-lg mb-2">
-                {benefit.title}
-              </h4>
-              <p className="text-gray-400">{benefit.desc}</p>
-            </div>
-          ))}
-        </div>
+        {/* CTA */}
+        {onNavigate && (
+          <div className="mt-24 text-center">
+            <button
+              onClick={() => onNavigate("services")}
+              className="group inline-flex items-center gap-3 text-white text-xl font-light hover:gap-5 transition-all duration-300"
+            >
+              Learn more about our process
+              <svg
+                className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </section>
-  );
-};
-
-interface ProcessCardProps {
-  step: {
-    number: string;
-    title: string;
-    description: string;
-    icon: React.ElementType;
-  };
-  index: number;
-  hasTriggered: boolean;
-  isLast: boolean;
-}
-
-const ProcessCard = ({
-  step,
-  index,
-  hasTriggered,
-  isLast,
-}: ProcessCardProps) => {
-  const Icon = step.icon;
-
-  return (
-    <div
-      className={`group relative transition-all duration-1000 ${
-        hasTriggered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-      style={{
-        transitionDelay: hasTriggered ? `${index * 150}ms` : "0ms",
-      }}
-    >
-      {/* Card Container */}
-      <div className="relative">
-        {/* Step Number Background */}
-        <div className="absolute -top-6 left-0 right-0 flex justify-center">
-          <div className="relative z-10">
-            <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-fuchsia-500 rounded-full flex items-center justify-center border-4 border-slate-800 group-hover:scale-110 transition-transform duration-300">
-              <span className="text-2xl font-bold text-white">
-                {step.number}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Card Content */}
-        <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm border border-slate-700/30 rounded-2xl p-8 pt-16 group-hover:border-cyan-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 relative overflow-hidden">
-          {/* Glow Effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:to-fuchsia-500/5 transition-all duration-300 rounded-2xl"></div>
-
-          {/* Icon */}
-          <div className="relative z-10 mb-6 flex justify-center">
-            <div className="p-4 bg-gradient-to-br from-cyan-500/20 to-fuchsia-500/10 rounded-xl group-hover:from-cyan-500/30 group-hover:to-fuchsia-500/20 transition-all duration-300">
-              <Icon className="w-8 h-8 text-amber-500" />
-            </div>
-          </div>
-
-          {/* Title and Description */}
-          <div className="relative z-10 text-center">
-            <h3 className="text-xl font-bold text-white mb-4 group-hover:text-amber-400 transition-colors duration-300">
-              {step.title}
-            </h3>
-            <p className="text-gray-400 leading-relaxed">{step.description}</p>
-          </div>
-
-          {/* Arrow to Next Step */}
-          {!isLast && (
-            <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 hidden lg:block">
-              <div className="w-8 h-8 border-2 border-cyan-500/30 rounded-full flex items-center justify-center group-hover:border-cyan-500 transition-colors duration-300 relative z-20">
-                <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
-              </div>
-            </div>
-          )}
-
-          {/* Bottom Accent Line */}
-          <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-amber-500 to-transparent group-hover:from-amber-400 transition-all duration-300 w-full"></div>
-        </div>
-      </div>
-    </div>
   );
 };

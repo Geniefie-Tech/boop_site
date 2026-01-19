@@ -19,15 +19,55 @@ export const HomePage = ({ onNavigate }: HomePageProps) => {
   return (
     <div>
       <Hero onNavigate={onNavigate} />
+
+      {/* Spacer: 120px */}
+      <div className="h-30" />
+
       <StatisticsSection />
-      <ServicesSnapshot onNavigate={onNavigate} />
-      <ProcessSection />
+
+      {/* Spacer: 200px */}
+      <div className="h-50" />
+
+      <ServicesSnapshot onNavigate={onNavigate} limit={6} />
+
+      {/* Spacer: 150px */}
+      <div className="h-40" />
+
+      <ProcessSection onNavigate={onNavigate} />
+
+      {/* Spacer: 180px */}
+      <div className="h-45" />
+
       <WorkPreview onNavigate={onNavigate} />
+
+      {/* Spacer: 200px */}
+      <div className="h-50" />
+
       <AboutPreview onNavigate={onNavigate} />
+
+      {/* Spacer: 150px */}
+      <div className="h-35" />
+
       <WhatDrivesUs />
+
+      {/* Spacer: 200px */}
+      <div className="h-50" />
+
       <Impact />
+
+      {/* Spacer: 180px */}
+      <div className="h-45" />
+
       <Team />
+
+      {/* Spacer: 200px */}
+      <div className="h-50" />
+
       <FinalCTA onNavigate={onNavigate} />
+
+      {/* Spacer: 150px */}
+      {/* <div className="h-40" /> */}
+
       <FAQ />
     </div>
   );

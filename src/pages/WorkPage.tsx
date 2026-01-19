@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { ChevronDown } from "lucide-react";
 import { useIntersectionObserver } from "../hooks/useScrollAnimation";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Import all images - Multiple images per project
 import brandingUTH1 from "../assets/our work/Branding and Packaging/Active UTH milk for Healthways/Screenshot 2025-12-31 155628.png";
@@ -90,6 +95,15 @@ import socialPTC1 from "../assets/our work/social media/PTC/Screenshot 2025-12-2
 import socialPTC2 from "../assets/our work/social media/PTC/Screenshot 2025-12-26 172501.png";
 import socialGeniefie1 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172558.png";
 import socialGeniefie2 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172608.png";
+
+// Type definitions
+type Project = {
+  title: string;
+  client: string;
+  category: string;
+  image: string;
+  images: string[];
+};
 
 // Modal Component
 const ImageModal = ({
@@ -253,6 +267,160 @@ export const WorkPage = () => {
     useIntersectionObserver({ threshold: 0.1 });
   const { isVisible: isSocialVisible, setElement: setSocialRef } =
     useIntersectionObserver({ threshold: 0.1 });
+
+  // Modal state for image viewing
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+
+  // Refs for GSAP animations
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to section function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  // GSAP Animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero Section Animations
+      const tl = gsap.timeline();
+
+      // Animate hero text letters
+      tl.from(".hero-content h1 span", {
+        opacity: 0,
+        y: 100,
+        rotateX: -90,
+        stagger: 0.05,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+      })
+        .from(
+          ".hero-content p",
+          {
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+          },
+          "-=0.3",
+        )
+        .from(
+          ".scroll-unfold-text",
+          {
+            opacity: 0,
+            y: 20,
+            duration: 0.5,
+          },
+          "-=0.2",
+        );
+
+      // Animate background orbs
+      gsap.to(".work-orb-1", {
+        x: 100,
+        y: -50,
+        scale: 1.2,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".work-orb-2", {
+        x: -80,
+        y: 60,
+        scale: 0.9,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".work-orb-3", {
+        x: 50,
+        y: 80,
+        scale: 1.1,
+        duration: 4.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      // Scroll-triggered animations for project cards
+      gsap.utils.toArray(".project-card").forEach((card: any, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "top 20%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          y: 100,
+          scale: 0.8,
+          rotateY: -15,
+          duration: 1,
+          ease: "power3.out",
+          delay: (index % 2) * 0.2,
+        });
+
+        // Hover animation
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            scale: 1.05,
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            scale: 1,
+            y: 0,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      // Section title animations
+      gsap.utils.toArray(".section-title").forEach((title: any) => {
+        gsap.from(title, {
+          scrollTrigger: {
+            trigger: title,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          x: -100,
+          duration: 1,
+          ease: "power3.out",
+        });
+      });
+
+      // Category badges animation
+      gsap.utils.toArray(".glass").forEach((badge: any, index) => {
+        gsap.from(badge, {
+          scrollTrigger: {
+            trigger: badge,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 0,
+          scale: 0,
+          rotation: 360,
+          duration: 0.6,
+          ease: "back.out(1.7)",
+        });
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   // Portfolio data organized by category with ALL images
   const portfolio = {
@@ -478,11 +646,617 @@ export const WorkPage = () => {
     ],
   };
 
+  // Handle project click
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProject(null), 300);
+  };
+
+  // GSAP Animations - TODO: Uncomment when GSAP is imported and refs are defined
+  /* useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero letter explosion animation
+      gsap.from(".hero-letter", {
+        scale: 0,
+        opacity: 0,
+        rotation: 360,
+        stagger: {
+          each: 0.05,
+          from: "random",
+        },
+        duration: 1,
+        ease: "back.out(2)",
+      });
+
+      // Floating orbs animation
+      gsap.to(".floating-orb-work", {
+        y: (i) => `random(-30, 30)`,
+        x: (i) => `random(-30, 30)`,
+        scale: (i) => `random(0.8, 1.2)`,
+        duration: (i) => `random(3, 5)`,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.2,
+      });
+
+      // Portfolio orbs animation
+      gsap.to(".portfolio-orb", {
+        scale: (i) => `random(0.9, 1.1)`,
+        x: (i) => `random(-50, 50)`,
+        y: (i) => `random(-50, 50)`,
+        duration: (i) => `random(4, 6)`,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.5,
+      });
+
+      // Portfolio header reveal animation
+      gsap.from(".portfolio-header-reveal", {
+        scrollTrigger: {
+          trigger: ".portfolio-header-reveal",
+          start: "top 80%",
+          end: "top 50%",
+          scrub: true,
+        },
+        y: 100,
+        opacity: 0,
+        scale: 0.9,
+      });
+
+      // Reveal words stagger
+      gsap.from(".reveal-word", {
+        scrollTrigger: {
+          trigger: ".reveal-title",
+          start: "top 80%",
+          end: "top 50%",
+          scrub: true,
+        },
+        y: 50,
+        opacity: 0,
+        rotationX: -45,
+        stagger: 0.1,
+      });
+
+      // Animated divider
+      gsap.to(".animated-divider", {
+        scaleX: 1.5,
+        opacity: 0.5,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.3,
+      });
+
+      // Magnetic cards animation
+      gsap.utils.toArray<HTMLElement>(".magnetic-card").forEach((card) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "top 60%",
+            scrub: true,
+          },
+          y: 100,
+          opacity: 0,
+          scale: 0.8,
+          rotationY: 15,
+        });
+      });
+
+      // Category particle animation
+      gsap.to(".category-particle", {
+        y: "random(-100, -200)",
+        x: "random(-50, 50)",
+        opacity: 0,
+        scale: 0,
+        duration: 2,
+        ease: "power2.out",
+        stagger: 0.1,
+      });
+
+      // Stats counter animation
+      const statItems = gsap.utils.toArray<HTMLElement>(".stat-item");
+      statItems.forEach((item) => {
+        const counter = item.querySelector("div[data-target]");
+        if (counter) {
+          const target = parseInt(counter.getAttribute("data-target") || "0");
+          const isPercentage = counter.textContent?.includes("%");
+
+          ScrollTrigger.create({
+            trigger: item,
+            start: "top 80%",
+            onEnter: () => {
+              gsap.to(counter, {
+                innerText: target,
+                duration: 2,
+                snap: { innerText: 1 },
+                ease: "power2.out",
+                onUpdate: function () {
+                  const current = Math.round(this.targets()[0].innerText);
+                  this.targets()[0].innerText = isPercentage
+                    ? `${current}%`
+                    : `${current}+`;
+                },
+              });
+            },
+          });
+        }
+      });
+
+      // Particles animation
+      gsap.utils
+        .toArray<HTMLElement>(".particle-work")
+        .forEach((particle, i) => {
+          gsap.to(particle, {
+            y: `random(-150, 150)`,
+            x: `random(-150, 150)`,
+            rotation: `random(0, 360)`,
+            scale: `random(0.5, 2)`,
+            duration: `random(4, 8)`,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: i * 0.1,
+          });
+        });
+
+      // Unfold curtain timeline
+      const unfoldTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      // Curtain unfold effect
+      unfoldTimeline
+        .to(
+          ".unfold-curtain",
+          {
+            scaleY: 0,
+            transformOrigin: "top",
+            ease: "power2.inOut",
+          },
+          0,
+        )
+        // Hero content fades and moves up
+        .to(
+          ".hero-content",
+          {
+            y: -100,
+            opacity: 0,
+            scale: 0.95,
+            ease: "power2.in",
+          },
+          0,
+        )
+        // Preview text appears
+        .to(
+          ".preview-text",
+          {
+            y: -50,
+            opacity: 1,
+            ease: "power2.out",
+          },
+          0.5,
+        );
+
+      // Hero Background Parallax
+      gsap.to(heroRef.current?.querySelector(".sticky"), {
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+        scale: 1.1,
+      });
+
+      // Floating Navigation Animation
+      ScrollTrigger.create({
+        trigger: heroRef.current,
+        start: "80% top",
+        end: "bottom top",
+        onEnter: () => {
+          gsap.to(navRef.current, {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(navRef.current, {
+            y: -20,
+            opacity: 0,
+            duration: 0.4,
+          });
+        },
+      });
+
+      // Featured Section Split Reveal
+      const featuredSection = document.querySelector(".featured-section");
+      if (featuredSection) {
+        gsap.fromTo(
+          ".split-left",
+          { x: "-100%" },
+          {
+            x: "0%",
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: featuredSection,
+              start: "top 80%",
+              end: "top 30%",
+              scrub: true,
+            },
+          },
+        );
+
+        gsap.fromTo(
+          ".split-right",
+          { x: "100%" },
+          {
+            x: "0%",
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: featuredSection,
+              start: "top 80%",
+              end: "top 30%",
+              scrub: true,
+            },
+          },
+        );
+
+        gsap.fromTo(
+          ".featured-content",
+          { opacity: 0, scale: 0.8 },
+          {
+            opacity: 1,
+            scale: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: featuredSection,
+              start: "top 60%",
+              end: "top 30%",
+              scrub: true,
+            },
+          },
+        );
+      }
+
+      // Category Section Animations
+      categories.forEach((category) => {
+        const section = document.getElementById(category.id);
+        if (!section) return;
+
+        // Header Animation with reveal effect
+        const header = section.querySelector(".category-header");
+        gsap.fromTo(
+          header,
+          { y: 100, opacity: 0, clipPath: "inset(100% 0 0 0)" },
+          {
+            y: 0,
+            opacity: 1,
+            clipPath: "inset(0% 0 0 0)",
+            duration: 1,
+            scrollTrigger: {
+              trigger: header,
+              start: "top 80%",
+              end: "top 50%",
+              scrub: true,
+            },
+          },
+        );
+
+        // Cards Stagger Animation with 3D effect
+        const cards = section.querySelectorAll(".project-card");
+        gsap.fromTo(
+          cards,
+          {
+            y: 120,
+            opacity: 0,
+            scale: 0.85,
+            rotationX: 45,
+            rotationY: -15,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            rotationX: 0,
+            rotationY: 0,
+            duration: 1,
+            stagger: {
+              each: 0.15,
+              from: "start",
+            },
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 70%",
+              end: "top 30%",
+              scrub: 1.5,
+            },
+          },
+        );
+
+        // Card hover parallax effect
+        cards.forEach((card) => {
+          const cardElement = card as HTMLElement;
+          cardElement.addEventListener("mousemove", (e) => {
+            const rect = cardElement.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+
+            gsap.to(cardElement, {
+              rotationX: rotateX,
+              rotationY: rotateY,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+
+          cardElement.addEventListener("mouseleave", () => {
+            gsap.to(cardElement, {
+              rotationX: 0,
+              rotationY: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            });
+          });
+        });
+      });
+
+      // Pin the first section header during scroll
+      ScrollTrigger.create({
+        trigger: ".section-pin-header",
+        start: "top 100px",
+        end: "bottom 100px",
+        pin: true,
+        pinSpacing: false,
+      });
+
+      // Horizontal Scroll Showcase
+      const showcaseSection = document.querySelector(".horizontal-showcase");
+      if (showcaseSection) {
+        const showcaseCards =
+          showcaseSection.querySelectorAll(".showcase-card");
+
+        gsap.to(showcaseCards, {
+          xPercent: -100 * (showcaseCards.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: showcaseSection,
+            pin: true,
+            scrub: 1,
+            snap: 1 / (showcaseCards.length - 1),
+            end: () => "+=" + showcaseSection.scrollWidth,
+          },
+        });
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [categories]); */
+
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 overflow-hidden">
-        {/* Animated Background Orbs */}
+    <div ref={containerRef} className="relative bg-black min-h-screen">
+      {/* Hero Section with Scroll to Unfold */}
+      <div ref={heroRef} className="relative h-[80vh] overflow-hidden">
+        {/* Fixed Hero Content */}
+        <div
+          className="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, #000000 0%, #1a0a2e 50%, #16213e 100%)",
+          }}
+        >
+          {/* Animated Background Elements with SVG Particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            <svg
+              viewBox="0 0 1000 800"
+              className="w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <radialGradient id="workOrbGrad1">
+                  <stop offset="0%" stopColor="#FF6B9D" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.2" />
+                </radialGradient>
+                <radialGradient id="workOrbGrad2">
+                  <stop offset="0%" stopColor="#00D2FF" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#3A7BD5" stopOpacity="0.2" />
+                </radialGradient>
+                <radialGradient id="workOrbGrad3">
+                  <stop offset="0%" stopColor="#FFE66D" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.2" />
+                </radialGradient>
+              </defs>
+
+              {/* Floating orbs */}
+              <circle
+                className="work-orb-1"
+                cx="200"
+                cy="200"
+                r="150"
+                fill="url(#workOrbGrad1)"
+                opacity="0.6"
+              />
+              <circle
+                className="work-orb-2"
+                cx="700"
+                cy="400"
+                r="200"
+                fill="url(#workOrbGrad2)"
+                opacity="0.5"
+              />
+              <circle
+                className="work-orb-3"
+                cx="500"
+                cy="600"
+                r="180"
+                fill="url(#workOrbGrad3)"
+                opacity="0.4"
+              />
+
+              {/* Particles */}
+              {[...Array(25)].map((_, i) => (
+                <circle
+                  key={i}
+                  className="particle-work"
+                  cx={50 + i * 40}
+                  cy={50 + (i % 5) * 150}
+                  r={3 + (i % 3)}
+                  fill={
+                    ["#FF6B9D", "#00D2FF", "#FFE66D", "#8B5CF6", "#F59E0B"][
+                      i % 5
+                    ]
+                  }
+                  opacity="0.5"
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Unfold Curtain Effect */}
+          <div className="unfold-curtain absolute inset-0 bg-black origin-top"></div>
+
+          {/* Hero Content */}
+          <div className="hero-content relative z-10 text-center px-6">
+            <h1 className="text-7xl md:text-9xl font-bold mb-6">
+              {"Our Work".split("").map((letter, i) => (
+                <span
+                  key={i}
+                  className="hero-letter inline-block"
+                  style={{
+                    background:
+                      letter === " "
+                        ? "transparent"
+                        : `linear-gradient(135deg, ${
+                            [
+                              "#FBBF24",
+                              "#F59E0B",
+                              "#F97316",
+                              "#FB923C",
+                              "#FBBF24",
+                              "#F59E0B",
+                            ][i % 6]
+                          }, ${
+                            [
+                              "#F59E0B",
+                              "#F97316",
+                              "#FB923C",
+                              "#FBBF24",
+                              "#F59E0B",
+                              "#F97316",
+                            ][i % 6]
+                          })`,
+                    backgroundClip: letter === " " ? "border-box" : "text",
+                    WebkitBackgroundClip:
+                      letter === " " ? "border-box" : "text",
+                    WebkitTextFillColor:
+                      letter === " " ? "transparent" : "transparent",
+                    display: "inline-block",
+                    marginRight: letter === " " ? "1.5rem" : "0",
+                  }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </span>
+              ))}
+            </h1>
+            <p className="text-2xl md:text-3xl font-light mb-4 animate-fade-in-delay">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400">
+                Transforming visions into reality
+              </span>
+            </p>
+
+            {/* Scroll to Unfold Text */}
+            <div className="scroll-unfold-text mt-12 animate-fade-in-delay-2">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-500"></div>
+                <p className="text-amber-400 text-sm tracking-[0.3em] uppercase font-light">
+                  Scroll to unfold
+                </p>
+                <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-500"></div>
+              </div>
+              <button
+                onClick={() => scrollToSection("branding")}
+                className="group animate-bounce-slow"
+              >
+                <ChevronDown
+                  size={48}
+                  className="text-amber-500 group-hover:text-amber-400 transition-colors"
+                />
+              </button>
+            </div>
+          </div>
+
+          {/* Preview Text that appears on scroll */}
+          <div className="preview-text absolute bottom-20 left-0 right-0 text-center px-6 opacity-0">
+            <h2 className="text-4xl md:text-6xl font-bold mb-4">
+              {"Selected Case Studies".split("").map((letter, i) => (
+                <span
+                  key={i}
+                  className="inline-block"
+                  style={{
+                    background:
+                      letter === " "
+                        ? "transparent"
+                        : `linear-gradient(135deg, ${
+                            [
+                              "#FF6B9D",
+                              "#C44569",
+                              "#8B5CF6",
+                              "#00D2FF",
+                              "#FFE66D",
+                              "#F59E0B",
+                            ][i % 6]
+                          }, ${
+                            [
+                              "#C44569",
+                              "#8B5CF6",
+                              "#00D2FF",
+                              "#3A7BD5",
+                              "#F59E0B",
+                              "#FF6B9D",
+                            ][i % 6]
+                          })`,
+                    backgroundClip: letter === " " ? "border-box" : "text",
+                    WebkitBackgroundClip:
+                      letter === " " ? "border-box" : "text",
+                    WebkitTextFillColor:
+                      letter === " " ? "transparent" : "transparent",
+                    display: "inline-block",
+                    marginRight: letter === " " ? "1rem" : "0",
+                  }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </span>
+              ))}
+            </h2>
+            <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
+              Explore our creative journey
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Projects Reveal Section */}
+      <div className="featured-section relative py-32 bg-black overflow-hidden flex items-center justify-center">
+        {/* Split Screen Effect */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500/25 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-fuchsia-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
@@ -526,13 +1300,13 @@ export const WorkPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Featured Project Sections */}
       <section className="py-20 md:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* Branding Section */}
-          <div className="mb-32" ref={setBrandingRef}>
+          <div id="branding" className="mb-32" ref={setBrandingRef}>
             <div
               className={`text-center mb-16 transition-all duration-1000 ${
                 isBrandingVisible ? "animate-fade-in" : "opacity-0"
@@ -543,7 +1317,7 @@ export const WorkPage = () => {
                   Category 01
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+              <h2 className="section-title text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
                 BRANDING &<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-fuchsia-400 to-cyan-400">
                   PACKAGING
@@ -571,42 +1345,94 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4 animate-slide-in-left delay-100">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Coffee Brand",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingKoffelo1}
                     alt="Koffelo 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-fuchsia-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-fuchsia-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Coffee Brand",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingKoffelo2}
                     alt="Koffelo 2"
                     className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-200">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-fuchsia-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-fuchsia-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Milkshake Brand",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingMilkshake1}
                     alt="Milkshake 1"
                     className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Milkshake Brand",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingMilkshake2}
                     alt="Milkshake 2"
                     className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -639,34 +1465,73 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Active UTH Milk",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingUTH1}
                     alt="UTH 1"
                     className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Active UTH Milk",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingUTH2}
                     alt="UTH 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Mozzarella Cheese",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingMozzarella}
                     alt="Mozzarella"
                     className="h-68 object-contain group-hover:scale-110 transition-transform duration-500 w-full"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -687,42 +1552,80 @@ export const WorkPage = () => {
                 <h3 className="text-2xl font-bold text-white">
                   Mustard Oil Packaging
                 </h3>
-                <p className="text-orange-400 text-lg font-semibold">Paras</p>
+                <p className="text-amber-400 text-lg font-semibold">Paras</p>
                 <p className="text-gray-300 leading-relaxed">
-                  Bold and vibrant packaging design for premium mustard oil
-                  line. Heritage brand presentation meeting modern retail
-                  standards and consumer expectations.
+                  Bold, traditional packaging design for mustard oil that
+                  captures heritage values while ensuring modern shelf presence.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Mustard Oil",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingMustard1}
                     alt="Mustard 1"
                     className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Mustard Oil",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingMustard2}
                     alt="Mustard 2"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "ESL Milk",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={brandingESL}
                     alt="ESL Milk"
                     className="h-68 object-contain group-hover:scale-110 transition-transform duration-500 w-full"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -782,7 +1685,7 @@ export const WorkPage = () => {
                   Category 02
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+              <h2 className="section-title text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
                 EMAILER &<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-pink-400 to-amber-300">
                   CAMPAIGNS
@@ -823,23 +1726,49 @@ export const WorkPage = () => {
               // subtitle=""
             />
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Emailer"].find(
+                        (p) => p.title === "PTC Network Emailer",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={emailerPTC1}
                     alt="PTC 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Emailer"].find(
+                        (p) => p.title === "PTC Network Emailer",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={emailerPTC2}
                     alt="PTC 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -871,7 +1800,7 @@ export const WorkPage = () => {
                   Category 03
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+              <h2 className="section-title text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
                 BTL ACTIVITIES &<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-blue-400 to-purple-400">
                   EVENTS
@@ -897,42 +1826,94 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Google Chromebook Roadshow",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlChromebook1}
                     alt="Chromebook 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Google Chromebook Roadshow",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlChromebook2}
                     alt="Chromebook 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in delay-200">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Diwali Merchandising",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlDiwali1}
                     alt="Diwali 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Diwali Merchandising",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlDiwali2}
                     alt="Diwali 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -965,42 +1946,94 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Christmas Mall Décor",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlChristmas1}
                     alt="Christmas 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Christmas Mall Décor",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlChristmas2}
                     alt="Christmas 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in delay-300">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Ganesh Chathurti Campaign",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlGanesh1}
                     alt="Ganesh 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Ganesh Chathurti Campaign",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlGanesh2}
                     alt="Ganesh 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -1102,7 +2135,7 @@ export const WorkPage = () => {
                   Category 04
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+              <h2 className="section-title text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
                 EVENTS &<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-400 to-red-400">
                   ACTIVATIONS
@@ -1335,9 +2368,9 @@ export const WorkPage = () => {
                   Category 05
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+              <h2 className="section-title text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
                 EXHIBITION &<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-400 to-orange-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-yellow-400">
                   STALLS
                 </span>
               </h2>
@@ -1495,52 +2528,12 @@ export const WorkPage = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 text-white relative overflow-hidden">
-        {/* Animated Background Orbs */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-fuchsia-400/15 rounded-full blur-3xl animate-float"></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12">
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-amber-500 to-fuchsia-400 bg-clip-text text-transparent mb-4 group-hover:from-amber-300 group-hover:to-pink-300 transition-all duration-300">
-                {Object.keys(portfolio).length}
-              </div>
-              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
-                Categories
-              </p>
-            </div>
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 group-hover:from-cyan-300 group-hover:to-sky-300 transition-all duration-300">
-                {Object.values(portfolio).flat().length}+
-              </div>
-              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
-                Projects
-              </p>
-            </div>
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-fuchsia-400 to-pink-500 bg-clip-text text-transparent mb-4 group-hover:from-fuchsia-300 group-hover:to-rose-300 transition-all duration-300">
-                100+
-              </div>
-              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
-                Brands Served
-              </p>
-            </div>
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent mb-4 group-hover:from-green-300 group-hover:to-teal-300 transition-all duration-300">
-                15+
-              </div>
-              <p className="text-gray-400 tracking-wide uppercase text-sm font-semibold">
-                Years
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={isModalOpen}
+        project={selectedProject}
+        onClose={closeModal}
+      />
     </div>
   );
 };

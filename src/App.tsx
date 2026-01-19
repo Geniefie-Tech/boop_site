@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { ServicesPage } from './pages/ServicesPage';
-import { WorkPage } from './pages/WorkPage';
-import { ClientsPage } from './pages/ClientsPage';
-import { ContactPage } from './pages/ContactPage';
-import { PageType } from './types';
+import { useState, useEffect } from "react";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { HomePage } from "./pages/HomePage";
+import { AboutPage } from "./pages/AboutPage";
+import { ServicesPage } from "./pages/ServicesPage";
+import { WorkPage } from "./pages/WorkPage";
+import { ClientsPage } from "./pages/ClientsPage";
+import { ContactPage } from "./pages/ContactPage";
+import { PageType } from "./types";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<PageType>('home');
+  const [currentPage, setCurrentPage] = useState<PageType>("home");
 
   useEffect(() => {
     document.title = `BoopOrg - ${currentPage.charAt(0).toUpperCase() + currentPage.slice(1)}`;
@@ -18,17 +18,17 @@ function App() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'home':
+      case "home":
         return <HomePage onNavigate={setCurrentPage} />;
-      case 'about':
+      case "about":
         return <AboutPage />;
-      case 'services':
+      case "services":
         return <ServicesPage />;
-      case 'work':
+      case "work":
         return <WorkPage />;
-      case 'clients':
+      case "clients":
         return <ClientsPage />;
-      case 'contact':
+      case "contact":
         return <ContactPage />;
       default:
         return <HomePage onNavigate={setCurrentPage} />;
@@ -36,7 +36,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       <Header currentPage={currentPage} onNavigate={setCurrentPage} />
       <main>{renderPage()}</main>
       <Footer onNavigate={setCurrentPage} />

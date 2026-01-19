@@ -3,8 +3,8 @@ import {
   Phone,
   MapPin,
   ArrowRight,
-  Facebook,
-  Twitter,
+  // Facebook,
+  // Twitter,
   Linkedin,
   Instagram,
 } from "lucide-react";
@@ -39,10 +39,16 @@ export const Footer = ({ onNavigate }: FooterProps) => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, label: "Facebook" },
-    { icon: Twitter, label: "Twitter" },
-    { icon: Linkedin, label: "LinkedIn" },
-    { icon: Instagram, label: "Instagram" },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      url: "https://www.linkedin.com/company/booporg-private-limited/",
+    },
+    {
+      icon: Instagram,
+      label: "Instagram",
+      url: "https://www.instagram.com/booporg_/",
+    },
   ];
 
   const contactInfo = [
@@ -95,7 +101,9 @@ export const Footer = ({ onNavigate }: FooterProps) => {
                 return (
                   <a
                     key={i}
-                    href="#"
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-2 bg-slate-800 rounded-full hover:bg-amber-500 text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110"
                     aria-label={social.label}
                   >

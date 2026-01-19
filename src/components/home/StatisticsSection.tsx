@@ -1,144 +1,218 @@
-import {
-  useScrollTrigger,
-  useCountAnimation,
-} from "../../hooks/useScrollAnimation";
-import { TrendingUp, Users, Award, Zap } from "lucide-react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const StatisticsSection = () => {
-  const { elementRef, hasTriggered } = useScrollTrigger();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
 
   const stats = [
     {
       value: 350,
-      label: "Businesses Trust Us",
-      icon: Users,
       suffix: "+",
+      label: "Businesses Trust Us",
     },
     {
       value: 500,
-      label: "Projects Completed",
-      icon: TrendingUp,
       suffix: "+",
+      label: "Projects Completed",
     },
     {
       value: 98,
-      label: "Client Satisfaction",
-      icon: Award,
       suffix: "%",
+      label: "Client Satisfaction",
     },
     {
       value: 15,
-      label: "Years of Experience",
-      icon: Zap,
       suffix: "+",
+      label: "Years of Experience",
     },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading animation
+      if (headingRef.current) {
+        gsap.from(headingRef.current.children, {
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 80%",
+            end: "bottom 60%",
+            toggleActions: "play none none reverse",
+          },
+          y: 60,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+        });
+      }
+
+      // Stats animation with counter
+      if (statsRef.current) {
+        const statElements = statsRef.current.querySelectorAll(".stat-item");
+
+        statElements.forEach((stat, index) => {
+          const numberElement = stat.querySelector(".stat-number");
+          const labelElement = stat.querySelector(".stat-label");
+
+          // Number counter animation
+          if (numberElement) {
+            gsap.from(numberElement, {
+              scrollTrigger: {
+                trigger: stat,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+              innerText: 0,
+              duration: 2,
+              delay: index * 0.15,
+              ease: "power2.out",
+              snap: { innerText: 1 },
+              onUpdate: function () {
+                const value = Math.ceil(this.targets()[0].innerText);
+                if (numberElement.getAttribute("data-suffix")) {
+                  this.targets()[0].innerText = value;
+                }
+              },
+            });
+          }
+
+          // Label fade in
+          if (labelElement) {
+            gsap.from(labelElement, {
+              scrollTrigger: {
+                trigger: stat,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+              y: 20,
+              opacity: 0,
+              duration: 0.8,
+              delay: index * 0.15 + 0.3,
+              ease: "power3.out",
+            });
+          }
+        });
+      }
+
+      // Background reveal animation
+      if (sectionRef.current) {
+        gsap.from(sectionRef.current, {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "top center",
+            scrub: 1,
+          },
+          backgroundColor: "rgb(20, 20, 20)",
+          ease: "none",
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
-      ref={elementRef}
-      className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden"
+      ref={sectionRef}
+      className="relative bg-black text-white py-32 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2
-            className={`text-4xl md:text-5xl font-bold text-white mb-6 transition-all duration-1000 ${
-              hasTriggered
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            Our Impact By Numbers
-          </h2>
-          <p
-            className={`text-xl text-gray-400 max-w-2xl mx-auto transition-all duration-1000 delay-200 ${
-              hasTriggered
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            Building brands that drive real business growth and meaningful
-            results
-          </p>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <StatCard
-              key={index}
-              stat={stat}
-              index={index}
-              hasTriggered={hasTriggered}
-            />
-          ))}
-        </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl opacity-20"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-fuchsia-500/10 rounded-full blur-3xl opacity-20"></div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-interface StatCardProps {
-  stat: {
-    value: number;
-    label: string;
-    icon: React.ElementType;
-    suffix: string;
-  };
-  index: number;
-  hasTriggered: boolean;
-}
-
-const StatCard = ({ stat, index, hasTriggered }: StatCardProps) => {
-  const Icon = stat.icon;
-  const animatedValue = useCountAnimation(stat.value, 2000, hasTriggered);
-
-  return (
-    <div
-      className={`group relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/30 rounded-2xl p-8 backdrop-blur-sm hover:border-amber-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-amber-500/10 transform hover:-translate-y-2 ${
-        hasTriggered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-      style={{
-        transitionDelay: hasTriggered ? `${index * 150}ms` : "0ms",
-      }}
-    >
-      {/* Icon Background */}
-      <div className="absolute top-6 right-6 p-3 bg-gradient-to-br from-amber-500/20 to-fuchsia-500/10 rounded-lg group-hover:from-amber-500/30 group-hover:to-fuchsia-500/20 transition-all duration-300">
-        <Icon className="w-6 h-6 text-amber-500" />
+      {/* Animated background gradient */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/2 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-slow delay-2000"></div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10">
-        <div className="mb-4">
-          <div
-            className={`text-5xl font-bold bg-gradient-to-r from-amber-500 to-fuchsia-400 bg-clip-text text-transparent transition-all duration-500 ${
-              hasTriggered ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            {animatedValue}
-            {stat.suffix}
-          </div>
-        </div>
-
-        <p className="text-gray-300 font-medium">{stat.label}</p>
-
-        {/* Bottom Accent Line */}
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
         <div
-          className={`mt-4 h-1 bg-gradient-to-r from-amber-500 to-transparent rounded-full group-hover:from-amber-400 transition-all duration-300 ${
-            hasTriggered ? "w-12" : "w-0"
-          }`}
+          className="w-full h-full"
+          style={{
+            backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5) 76%, transparent 77%, transparent)`,
+            backgroundSize: "60px 60px",
+          }}
         ></div>
       </div>
 
-      {/* Glow Effect on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-500/0 to-amber-500/0 group-hover:from-amber-500/5 group-hover:to-fuchsia-500/5 rounded-2xl transition-all duration-300"></div>
-    </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section heading */}
+        <div ref={headingRef} className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            Proven Impact
+          </h2>
+          <p className="text-xl md:text-2xl font-light text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Building brands that drive measurable growth and competitive
+            advantage
+          </p>
+        </div>
+
+        {/* Stats grid */}
+        <div
+          ref={statsRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 lg:gap-16"
+        >
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="stat-item text-center group cursor-default"
+            >
+              {/* Large number */}
+              <div className="mb-3 relative">
+                <div className="relative inline-block">
+                  <span
+                    className="stat-number text-5xl md:text-6xl lg:text-7xl font-bold text-white block transition-all duration-300 group-hover:scale-105"
+                    data-suffix={stat.suffix}
+                  >
+                    {stat.value}
+                  </span>
+                  <span className="text-5xl md:text-6xl lg:text-7xl font-bold text-white">
+                    {stat.suffix}
+                  </span>
+
+                  {/* Decorative underline on hover */}
+                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+              </div>
+
+              {/* Label */}
+              <p className="stat-label text-sm md:text-base text-gray-400 font-light leading-snug transition-colors duration-300 group-hover:text-gray-300 px-2">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Decorative line */}
+        <div className="mt-16 flex justify-center">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes pulse-slow {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.5;
+            transform: scale(1.1);
+          }
+        }
+
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
+        }
+
+        .delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
+    </section>
   );
 };
