@@ -13,6 +13,7 @@ import ravi from "../../assets/Ravi.png";
 import inderjit from "../../assets/inderjit.png";
 import shailin from "../../assets/Shailen.png";
 import saurabh from "../../assets/Saurabh.png";
+import sonu from "../../assets/sonu.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,7 +39,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 3,
-    name: "Shailin Bardhan",
+    name: "Shailen Bardhan",
     role: "Creative Head",
     image: shailin,
   },
@@ -80,15 +81,21 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 10,
-    name: "Indrajeet",
-    role: "Event Director",
+    name: "Indrajit Singh",
+    role: "Head of Production",
     image: inderjit,
   },
   {
     id: 11,
-    name: "Udit",
+    name: "Udit Gupta",
     role: "Digital Marketing",
     image: udit,
+  },
+  {
+    id: 12,
+    name: "Sonu Saxena",
+    role: "Admin",
+    image: sonu,
   },
 ];
 

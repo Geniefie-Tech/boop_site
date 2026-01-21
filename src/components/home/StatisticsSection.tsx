@@ -61,22 +61,28 @@ export const StatisticsSection = () => {
 
           // Number counter animation
           if (numberElement) {
-            gsap.from(numberElement, {
+            const targetValue = parseInt(
+              numberElement.getAttribute("data-value") || "0",
+            );
+            const suffix = numberElement.getAttribute("data-suffix") || "";
+
+            // Set initial value to 0
+            numberElement.innerText = "0" + suffix;
+
+            gsap.to(numberElement, {
               scrollTrigger: {
                 trigger: stat,
                 start: "top 85%",
                 toggleActions: "play none none reverse",
               },
-              innerText: 0,
+              innerText: targetValue,
               duration: 2,
               delay: index * 0.15,
               ease: "power2.out",
               snap: { innerText: 1 },
               onUpdate: function () {
                 const value = Math.ceil(this.targets()[0].innerText);
-                if (numberElement.getAttribute("data-suffix")) {
-                  this.targets()[0].innerText = value;
-                }
+                this.targets()[0].innerText = value + suffix;
               },
             });
           }
@@ -165,12 +171,11 @@ export const StatisticsSection = () => {
               <div className="mb-3 relative">
                 <div className="relative inline-block">
                   <span
-                    className="stat-number text-5xl md:text-6xl lg:text-7xl font-bold text-white block transition-all duration-300 group-hover:scale-105"
+                    className="stat-number text-5xl md:text-6xl lg:text-7xl font-bold text-white transition-all duration-300 group-hover:scale-105"
+                    data-value={stat.value}
                     data-suffix={stat.suffix}
                   >
                     {stat.value}
-                  </span>
-                  <span className="text-5xl md:text-6xl lg:text-7xl font-bold text-white">
                     {stat.suffix}
                   </span>
 

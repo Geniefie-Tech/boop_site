@@ -249,7 +249,7 @@ export const ContactPage = () => {
       }
 
       // Submit to Firebase Firestore
-      await addDoc(collection(db, "contactSubmissions"), {
+      await addDoc(collection(db, "formSubmissions"), {
         name: formData.name,
         email: formData.email,
         phoneNumber: formData.phoneNumber,
@@ -259,7 +259,7 @@ export const ContactPage = () => {
         createdAt: serverTimestamp(),
         status: "new",
       });
-
+      console.log("efbhivy");
       // Set rate limit timestamp
       localStorage.setItem("lastFormSubmission", Date.now().toString());
       setCanSubmit(false);
@@ -288,7 +288,7 @@ export const ContactPage = () => {
         setSubmitted(false);
       }, 3000);
     } catch (err) {
-      console.error("Error submitting form:", err);
+      console.log("Error submitting form:", err);
       setError(
         "Failed to submit form. Please try again or contact us directly.",
       );
@@ -406,45 +406,9 @@ export const ContactPage = () => {
 
         {/* Hero Content */}
         <div className="relative z-10 text-center max-w-5xl mx-auto px-6">
-          <h1 className="text-7xl md:text-9xl font-black mb-8 leading-none">
-            {"Get in Touch".split("").map((letter, i) => (
-              <span
-                key={i}
-                className="hero-letter inline-block"
-                style={{
-                  background:
-                    letter === " "
-                      ? "transparent"
-                      : `linear-gradient(135deg, ${
-                          [
-                            "#FBBF24",
-                            "#F59E0B",
-                            "#F97316",
-                            "#FB923C",
-                            "#FBBF24",
-                            "#F59E0B",
-                          ][i % 6]
-                        }, ${
-                          [
-                            "#F59E0B",
-                            "#F97316",
-                            "#FB923C",
-                            "#FBBF24",
-                            "#F59E0B",
-                            "#F97316",
-                          ][i % 6]
-                        })`,
-                  backgroundClip: letter === " " ? "border-box" : "text",
-                  WebkitBackgroundClip: letter === " " ? "border-box" : "text",
-                  WebkitTextFillColor:
-                    letter === " " ? "transparent" : "transparent",
-                  display: "inline-block",
-                  marginRight: letter === " " ? "1rem" : "0",
-                }}
-              >
-                {letter === " " ? "\u00A0" : letter}
-              </span>
-            ))}
+          <h1 className="text-7xl md:text-9xl font-black mb-8">
+            <span className="text-white">Get in</span>{" "}
+            <span className="text-white/50">Touch</span>
           </h1>
 
           <div className="hero-subtitle">
@@ -466,11 +430,6 @@ export const ContactPage = () => {
               We're ready when you are.
             </p>
           </div>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <Sparkles className="text-pink-400" size={32} />
-          </div>
         </div>
       </section>
 
@@ -487,21 +446,22 @@ export const ContactPage = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info Cards */}
             <div className="contact-info space-y-8">
-              <h2 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 mb-12">
-                Let's Connect
+              <h2 className="text-5xl md:text-6xl font-black mb-12">
+                <span className="text-white">Let's</span>{" "}
+                <span className="text-white/50">Connect</span>
               </h2>
 
               <div className="contact-card group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative p-8 flex items-center gap-6">
-                  <div className="flex-shrink-0 w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
-                    <Mail className="text-white" size={32} />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative p-6 flex items-center gap-4">
+                  <div className="flex-shrink-0 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+                    <Mail className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">
+                    <h3 className="text-xl font-bold text-white mb-2">
                       Email Us
                     </h3>
-                    <p className="text-white/90 text-lg">info@booporg.com</p>
+                    <p className="text-white/90 text-base">info@booporg.com</p>
                   </div>
                 </div>
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -510,16 +470,16 @@ export const ContactPage = () => {
               </div>
 
               <div className="contact-card group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative p-8 flex items-center gap-6">
-                  <div className="flex-shrink-0 w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
-                    <Phone className="text-white" size={32} />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative p-6 flex items-center gap-4">
+                  <div className="flex-shrink-0 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+                    <Phone className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">
+                    <h3 className="text-xl font-bold text-white mb-2">
                       Call Us
                     </h3>
-                    <p className="text-white/90 text-lg">+91 98110 66616</p>
+                    <p className="text-white/90 text-base">+91 98110 66616</p>
                   </div>
                 </div>
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -528,13 +488,13 @@ export const ContactPage = () => {
               </div>
 
               <div className="contact-card group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative p-8 flex items-center gap-6">
-                  <div className="flex-shrink-0 w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
-                    <MapPin className="text-white" size={32} />
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-300 via-orange-400 to-amber-500 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative p-6 flex items-center gap-4">
+                  <div className="flex-shrink-0 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+                    <MapPin className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">
+                    <h3 className="text-xl font-bold text-white mb-2">
                       Visit Us
                     </h3>
                     <p className="text-white/90 text-base leading-relaxed">
@@ -667,7 +627,7 @@ export const ContactPage = () => {
                   className="group relative w-full py-6 rounded-2xl font-bold text-xl overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ willChange: "transform" }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 opacity-100 group-hover:opacity-90 transition-opacity"></div>
                   <div className="relative z-10 flex items-center justify-center gap-3 text-white">
                     {isSubmitting ? (
                       <>

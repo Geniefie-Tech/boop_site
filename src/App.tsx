@@ -14,6 +14,11 @@ function App() {
 
   useEffect(() => {
     document.title = `BoopOrg - ${currentPage.charAt(0).toUpperCase() + currentPage.slice(1)}`;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   }, [currentPage]);
 
   const renderPage = () => {
@@ -21,13 +26,13 @@ function App() {
       case "home":
         return <HomePage onNavigate={setCurrentPage} />;
       case "about":
-        return <AboutPage />;
+        return <AboutPage onNavigate={setCurrentPage} />;
       case "services":
-        return <ServicesPage />;
+        return <ServicesPage onNavigate={setCurrentPage} />;
       case "work":
         return <WorkPage />;
       case "clients":
-        return <ClientsPage />;
+        return <ClientsPage onNavigate={setCurrentPage} />;
       case "contact":
         return <ContactPage />;
       default:

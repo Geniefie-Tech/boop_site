@@ -22,22 +22,19 @@ export const WorkPreview = ({ onNavigate }: WorkPreviewProps) => {
   const featuredWork = [
     {
       id: 1,
-      image:
-        "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "../src/assets/Asli.png",
       title: "Brand Campaign",
       category: "FMCG",
     },
     {
       id: 2,
-      image:
-        "https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "../src/assets/marketing.jpg",
       title: "Marketing Campaign",
       category: "Media",
     },
     {
       id: 3,
-      image:
-        "https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "../src/assets/creative.jpg",
       title: "Creative Work",
       category: "Technology",
     },
@@ -133,8 +130,8 @@ export const WorkPreview = ({ onNavigate }: WorkPreviewProps) => {
                 end: "bottom top",
                 scrub: 1.5,
               },
-              y: -80,
-              scale: 1.15,
+              y: -40,
+              scale: 1.1,
               ease: "none",
             });
           }
@@ -316,7 +313,7 @@ export const WorkPreview = ({ onNavigate }: WorkPreviewProps) => {
                   <img
                     src={work.image}
                     alt={work.title}
-                    className="work-image w-full h-[120%] object-cover transition-all duration-700 group-hover:scale-110"
+                    className="work-image w-full h-full object-contain object-center transition-all duration-700 group-hover:scale-105"
                   />
                 </div>
 

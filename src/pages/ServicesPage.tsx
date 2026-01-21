@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PageType } from "../types";
 import {
   Target,
   Palette,
@@ -16,7 +17,11 @@ import { useIntersectionObserver } from "../hooks/useScrollAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const ServicesPage = () => {
+interface ServicesPageProps {
+  onNavigate?: (page: PageType) => void;
+}
+
+export const ServicesPage = ({ onNavigate }: ServicesPageProps = {}) => {
   const { isVisible, setElement } = useIntersectionObserver({ threshold: 0.1 });
   const heroRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -252,13 +257,8 @@ export const ServicesPage = () => {
             <div className="text-left z-10">
               <div className="hero-title">
                 <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
-                    End-to-End
-                  </span>
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
-                    Solutions.
-                  </span>
+                  <span className="text-white">End-to-End</span>{" "}
+                  <span className="text-white/50">Solutions.</span>
                 </h1>
               </div>
               <div className="hero-subtitle">
@@ -672,8 +672,9 @@ export const ServicesPage = () => {
       <section className="py-32 bg-gradient-to-b from-black via-slate-950 to-black">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 mb-6">
-              Core Services
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="text-white">Core</span>{" "}
+              <span className="text-white/50">Services</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Comprehensive solutions tailored to elevate your brand and drive
@@ -716,24 +717,6 @@ export const ServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full filter blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"></div>
-        </div>
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 mb-8">
-            Ready to Transform Your Brand?
-          </h2>
-          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            Let's create something extraordinary together. Get in touch with our
-            team to discuss your next project.
-          </p>
-          <button className="bg-amber-500 hover:bg-amber-600 text-white px-12 py-6 rounded-full font-semibold text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-amber-500/50">
-            Start a Project
-          </button>
-        </div>
-      </section>
 
       <style>{`
         @keyframes float {

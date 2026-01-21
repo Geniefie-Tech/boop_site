@@ -7,8 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // Import all images - Multiple images per project
-import brandingUTH1 from "../assets/our work/Branding and Packaging/Active UTH milk for Healthways/Screenshot 2025-12-31 155628.png";
-import brandingUTH2 from "../assets/our work/Branding and Packaging/Active UTH milk for Healthways/Screenshot 2025-12-31 155634.png";
+import brandingUTH1 from "../assets/Healthways.jpg";
+import brandingUTH2 from "../assets/healthways1.jpg";
 import boop from "../assets/Logo/BoopLogo.png";
 import brandingKoffelo1 from "../assets/our work/Branding and Packaging/Coffee Brand- Koffelo/Screenshot 2025-12-31 155520.png";
 
@@ -16,12 +16,16 @@ import brandingKoffelo2 from "../assets/our work/Branding and Packaging/Coffee B
 import brandingESL from "../assets/our work/Branding and Packaging/ESL Milk for Healthways/Screenshot 2025-12-31 155618.png";
 import brandingMilkshake1 from "../assets/our work/Branding and Packaging/Milkshake Brand  - Paras Enjoy/Screenshot 2025-12-31 155537.png";
 import brandingMilkshake2 from "../assets/our work/Branding and Packaging/Milkshake Brand  - Paras Enjoy/Screenshot 2025-12-31 155542.png";
-import brandingMozzarella from "../assets/our work/Branding and Packaging/Mozzarella Cheese packaging  Galacia/Screenshot 2025-12-31 155642.png";
+// import brandingMozzarella from "../assets/our work/Branding and Packaging/Mozzarella Cheese packaging  Galacia/Screenshot 2025-12-31 155642.png";
+import brandingMozzarella from "../assets/galacia.png";
+//
 import brandingMustard1 from "../assets/our work/Branding and Packaging/Mustard Oil Packaging for Paras/Screenshot 2025-12-31 155550.png";
 import brandingMustard2 from "../assets/our work/Branding and Packaging/Mustard Oil Packaging for Paras/Screenshot 2025-12-31 155556.png";
 import logoDesign1 from "../assets/our work/Branding and Packaging/Logo Design/All about data.png";
 import logoDesign2 from "../assets/our work/Branding and Packaging/Logo Design/Click mania.png";
 import logoDesign3 from "../assets/our work/Branding and Packaging/Logo Design/Cold Brew.png";
+import brandingColdBrew from "../assets/coldbrew.png";
+import brandingKoffeloNOC from "../assets/koffelo.png"; // Placeholder - replace with NOC images
 import logoDesign4 from "../assets/our work/Branding and Packaging/Logo Design/Data Decore.png";
 import logoDesign5 from "../assets/our work/Branding and Packaging/Logo Design/Entice.png";
 import logoDesign6 from "../assets/our work/Branding and Packaging/Logo Design/Galacia.png";
@@ -58,6 +62,20 @@ import btlHero1 from "../assets/our work/BTL Activities/Hero Electric Pan India 
 import btlHero2 from "../assets/our work/BTL Activities/Hero Electric Pan India Road Show 6 Months Campaign/Screenshot 2025-12-31 154032.png";
 import btlHoli1 from "../assets/our work/BTL Activities/Holi Merchandising Box – Paras Dairy/Screenshot 2025-12-31 153837.png";
 import btlHoli2 from "../assets/our work/BTL Activities/Holi Merchandising Box – Paras Dairy/Screenshot 2025-12-31 153844.png";
+import btlVehicleVinyl1 from "../assets/our work/BTL Activities/Vehicle Branding Activity with Vinyl printing/Screenshot 2025-12-31 153730.png";
+import btlVehicleVinyl2 from "../assets/our work/BTL Activities/Vehicle Branding Activity with Vinyl printing/Screenshot 2025-12-31 153735.png";
+import btlVehiclePaint1 from "../assets/our work/BTL Activities/Vehicle Branding with painting/Screenshot 2025-12-31 153752.png";
+import btlVehiclePaint2 from "../assets/our work/BTL Activities/Vehicle Branding with painting/Screenshot 2025-12-31 153803.png";
+import btlMerchandising1 from "../assets/our work/BTL Activities/Merchandising T shirt/Screenshot 2025-12-31 153859.png";
+import btlMerchandising2 from "../assets/our work/BTL Activities/Merchandising T shirt/Screenshot 2025-12-31 153915.png";
+import btlMerchandising3 from "../assets/our work/BTL Activities/Merchandising T shirt/Screenshot 2025-12-31 153924.png";
+import btlMerchandising4 from "../assets/our work/BTL Activities/Merchandising T shirt/Screenshot 2025-12-31 153930.png";
+import btlMerchandising5 from "../assets/our work/BTL Activities/Merchandising T shirt/Screenshot 2025-12-31 153945.png";
+import btlMerchandising6 from "../assets/our work/BTL Activities/Merchandising T shirt/Screenshot 2025-12-31 153954.png";
+import btlNissan1 from "../assets/our work/BTL Activities/Nissan Kicks-Mall Activation Delhi-Mumbai-Kolkata-Bangalore & Kolkata/Screenshot 2025-12-31 154101.png";
+import btlNissan2 from "../assets/our work/BTL Activities/Nissan Kicks-Mall Activation Delhi-Mumbai-Kolkata-Bangalore & Kolkata/Screenshot 2025-12-31 154111.png";
+import btlPTCFilmfare1 from "../assets/our work/BTL Activities/PTC Digital Film Fare – On ground Activity/Screenshot 2025-12-31 153540.png";
+import btlPTCFilmfare2 from "../assets/our work/BTL Activities/PTC Digital Film Fare – On ground Activity/Screenshot 2025-12-31 153545.png";
 
 import eventAirtel1 from "../assets/our work/event/Airtel Annual Leadership Conclave - Dubai/Screenshot 2025-12-26 174226.png";
 import eventAirtel2 from "../assets/our work/event/Airtel Annual Leadership Conclave - Dubai/Screenshot 2025-12-26 174238.png";
@@ -71,6 +89,10 @@ import eventParas1 from "../assets/our work/event/Paras Annual Sales Meeting Mus
 import eventParas2 from "../assets/our work/event/Paras Annual Sales Meeting Mussoorie, 2024/Screenshot 2025-12-26 174000.png";
 import eventRangotsav1 from "../assets/our work/event/Rangotsav/Screenshot 2025-12-26 175318.png";
 import eventRangotsav2 from "../assets/our work/event/Rangotsav/Screenshot 2025-12-26 175326.png";
+import eventViber1 from "../assets/our work/event/Viber 8 Festival/Screenshot 2025-12-26 174615.png";
+import eventViber2 from "../assets/our work/event/Viber 8 Festival/Screenshot 2025-12-26 174623.png";
+import eventWella1 from "../assets/our work/event/Wella Professionals Hometel, Chandigarh/Screenshot 2025-12-26 174251.png";
+import eventWella2 from "../assets/our work/event/Wella Professionals Hometel, Chandigarh/Screenshot 2025-12-26 174304.png";
 
 import exhibPragati1 from "../assets/our work/Exhibition Stall/1350 Sq. Meter Stall at Pragati Maidan,/Screenshot 2025-12-26 181315.png";
 import exhibPragati2 from "../assets/our work/Exhibition Stall/1350 Sq. Meter Stall at Pragati Maidan,/Screenshot 2025-12-26 181322.png";
@@ -82,6 +104,12 @@ import exhibJSW1 from "../assets/our work/Exhibition Stall/Exhibition Stall for 
 import exhibJSW2 from "../assets/our work/Exhibition Stall/Exhibition Stall for JSW, 2016/Screenshot 2025-12-26 181307.png";
 import exhibIITF1 from "../assets/our work/Exhibition Stall/IITF 2024, New Delhi/Screenshot 2025-12-26 180949.png";
 import exhibIITF2 from "../assets/our work/Exhibition Stall/IITF 2024, New Delhi/Screenshot 2025-12-26 181119.png";
+import exhibReliance1 from "../assets/our work/Exhibition Stall/Reliance Met City/Screenshot 2025-12-26 181333.png";
+import exhibReliance2 from "../assets/our work/Exhibition Stall/Reliance Met City/Screenshot 2025-12-26 181341.png";
+import exhibIFF1 from "../assets/our work/Exhibition Stall/IFF 2024, Mumbai/Screenshot 2025-12-26 181126.png";
+import exhibIFF2 from "../assets/our work/Exhibition Stall/IFF 2024, Mumbai/Screenshot 2025-12-26 181231.png";
+import exhibMithai1 from "../assets/our work/Exhibition Stall/The World Mithai Namkeen Convention & Expo 2024, New Delhi/Screenshot 2025-12-26 181241.png";
+import exhibMithai2 from "../assets/our work/Exhibition Stall/The World Mithai Namkeen Convention & Expo 2024, New Delhi/Screenshot 2025-12-26 181248.png";
 
 import socialParas1 from "../assets/our work/social media/Paras Dairy/Screenshot 2025-12-26 172521.png";
 import socialParas2 from "../assets/our work/social media/Paras Dairy/Screenshot 2025-12-26 172526.png";
@@ -91,10 +119,18 @@ import socialIndiaTV1 from "../assets/our work/social media/india tv/Screenshot 
 import socialIndiaTV2 from "../assets/our work/social media/india tv/Screenshot 2025-12-26 172707.png";
 import socialKoffelo1 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172806.png";
 import socialKoffelo2 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172815.png";
+import socialKoffelo3 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172848.png";
+import socialKoffelo4 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172902.png";
+import socialKoffelo5 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172914.png";
+import socialKoffelo6 from "../assets/our work/social media/koffelo/Screenshot 2025-12-26 172922.png";
 import socialPTC1 from "../assets/our work/social media/PTC/Screenshot 2025-12-26 172450.png";
 import socialPTC2 from "../assets/our work/social media/PTC/Screenshot 2025-12-26 172501.png";
 import socialGeniefie1 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172558.png";
 import socialGeniefie2 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172608.png";
+import socialGeniefie3 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172616.png";
+import socialGeniefie4 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172630.png";
+import socialGeniefie5 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172638.png";
+import socialGeniefie6 from "../assets/our work/social media/Geniefie/Screenshot 2025-12-26 172647.png";
 
 // Type definitions
 type Project = {
@@ -103,6 +139,8 @@ type Project = {
   category: string;
   image: string;
   images: string[];
+  video?: string;
+  poster?: string;
 };
 
 // Modal Component
@@ -156,15 +194,25 @@ const ImageModal = ({
           </button>
         </div>
 
-        {/* Main Image with scale animation */}
-        <div className="relative bg-black rounded-lg overflow-hidden">
-          <img
-            src={currentImage}
-            alt={`${project.title} - ${currentIndex + 1}`}
-            className="w-full h-auto max-h-[70vh] object-contain animate-fadeIn"
-          />
+        {/* Main Media with scale animation */}
+        <div className="relative bg-black rounded-lg overflow-hidden flex items-center justify-center min-h-[70vh]">
+          {currentImage.includes(".mp4") ? (
+            <video
+              src={currentImage}
+              controls
+              autoPlay
+              poster={project.poster}
+              className="max-w-full max-h-[70vh] object-contain animate-fadeIn"
+            />
+          ) : (
+            <img
+              src={currentImage}
+              alt={`${project.title} - ${currentIndex + 1}`}
+              className="max-w-full max-h-[70vh] object-contain animate-fadeIn"
+            />
+          )}
 
-          {/* Image Counter Badge */}
+          {/* Media Counter Badge */}
           <div className="absolute bottom-4 right-4 bg-amber-500 text-black px-4 py-2 rounded-full font-bold text-sm">
             {currentIndex + 1}/{images.length}
           </div>
@@ -192,7 +240,7 @@ const ImageModal = ({
                 }`}
               >
                 <img
-                  src={img}
+                  src={img.includes(".mp4") ? project.poster || img : img}
                   alt={`Thumbnail ${idx + 1}`}
                   className="w-full h-full object-cover"
                 />
@@ -429,7 +477,9 @@ export const WorkPage = () => {
         title: "Active UTH Milk",
         client: "Healthways",
         category: "Branding & Packaging",
+
         image: brandingUTH1,
+
         images: [brandingUTH1, brandingUTH2],
       },
       {
@@ -444,6 +494,7 @@ export const WorkPage = () => {
         client: "Healthways",
         category: "Branding & Packaging",
         image: brandingESL,
+
         images: [brandingESL],
       },
       {
@@ -474,6 +525,20 @@ export const WorkPage = () => {
         image: logoDesign1,
         images: [logoDesign1],
       },
+      {
+        title: "NOC Koffelo",
+        client: "Koffelo",
+        category: "Branding & Packaging",
+        image: brandingKoffeloNOC,
+        images: [brandingKoffeloNOC],
+      },
+      {
+        title: "Cold Brew Coffee",
+        client: "Cold Brew",
+        category: "Branding & Packaging",
+        image: brandingColdBrew,
+        images: [brandingColdBrew],
+      },
     ],
     "BTL Activities": [
       {
@@ -495,7 +560,9 @@ export const WorkPage = () => {
         client: "ABP Majha",
         category: "BTL Activities",
         image: btlGanesh1,
-        images: [btlGanesh1, btlGanesh2],
+        images: [btlGanesh1, btlGanesh2, "/src/assets/ganesh.mp4"],
+        video: "/src/assets/ganesh.mp4",
+        poster: btlGanesh2,
       },
       {
         title: "Google Chromebook Roadshow",
@@ -517,6 +584,48 @@ export const WorkPage = () => {
         category: "BTL Activities",
         image: btlHoli1,
         images: [btlHoli1, btlHoli2],
+      },
+      {
+        title: "Vehicle Branding with Vinyl Printing",
+        client: "Various",
+        category: "BTL Activities",
+        image: btlVehicleVinyl1,
+        images: [btlVehicleVinyl1, btlVehicleVinyl2],
+      },
+      {
+        title: "Vehicle Branding with Painting",
+        client: "Various",
+        category: "BTL Activities",
+        image: btlVehiclePaint1,
+        images: [btlVehiclePaint1, btlVehiclePaint2],
+      },
+      {
+        title: "Merchandising T-Shirt",
+        client: "Various",
+        category: "BTL Activities",
+        image: btlMerchandising1,
+        images: [
+          btlMerchandising1,
+          btlMerchandising2,
+          btlMerchandising3,
+          btlMerchandising4,
+          btlMerchandising5,
+          btlMerchandising6,
+        ],
+      },
+      {
+        title: "Nissan Kicks Mall Activation",
+        client: "Nissan",
+        category: "BTL Activities",
+        image: btlNissan1,
+        images: [btlNissan1, btlNissan2],
+      },
+      {
+        title: "PTC Digital Film Fare",
+        client: "PTC",
+        category: "BTL Activities",
+        image: btlPTCFilmfare1,
+        images: [btlPTCFilmfare1, btlPTCFilmfare2],
       },
     ],
     Events: [
@@ -562,6 +671,20 @@ export const WorkPage = () => {
         image: eventRangotsav1,
         images: [eventRangotsav1, eventRangotsav2],
       },
+      {
+        title: "Viber 8 Festival",
+        client: "Viber",
+        category: "Events",
+        image: eventViber1,
+        images: [eventViber1, eventViber2],
+      },
+      {
+        title: "Wella Professionals Event",
+        client: "Wella Professionals",
+        category: "Events",
+        image: eventWella1,
+        images: [eventWella1, eventWella2],
+      },
     ],
     "Exhibition Stalls": [
       {
@@ -599,6 +722,27 @@ export const WorkPage = () => {
         image: exhibIITF1,
         images: [exhibIITF1, exhibIITF2],
       },
+      {
+        title: "Reliance Met City",
+        client: "Reliance",
+        category: "Exhibition Stalls",
+        image: exhibReliance1,
+        images: [exhibReliance1, exhibReliance2],
+      },
+      {
+        title: "IFF 2024 Stall",
+        client: "IFF Mumbai",
+        category: "Exhibition Stalls",
+        image: exhibIFF1,
+        images: [exhibIFF1, exhibIFF2],
+      },
+      {
+        title: "World Mithai Namkeen Convention 2024",
+        client: "WMNC",
+        category: "Exhibition Stalls",
+        image: exhibMithai1,
+        images: [exhibMithai1, exhibMithai2],
+      },
     ],
     "Social Media": [
       {
@@ -627,7 +771,14 @@ export const WorkPage = () => {
         client: "Koffelo",
         category: "Social Media",
         image: socialKoffelo1,
-        images: [socialKoffelo1, socialKoffelo2],
+        images: [
+          socialKoffelo1,
+          socialKoffelo2,
+          socialKoffelo3,
+          socialKoffelo4,
+          socialKoffelo5,
+          socialKoffelo6,
+        ],
       },
       {
         title: "PTC",
@@ -641,7 +792,37 @@ export const WorkPage = () => {
         client: "Geniefie",
         category: "Social Media",
         image: socialGeniefie1,
-        images: [socialGeniefie1, socialGeniefie2],
+        images: [
+          socialGeniefie1,
+          socialGeniefie2,
+          socialGeniefie3,
+          socialGeniefie4,
+          socialGeniefie5,
+          socialGeniefie6,
+        ],
+      },
+    ],
+    Emailer: [
+      {
+        title: "PTC Network Emailer",
+        client: "PTC Network",
+        category: "Emailer",
+        image: emailerPTC1,
+        images: [emailerPTC1, emailerPTC2],
+      },
+      {
+        title: "India TV Emailer",
+        client: "India TV",
+        category: "Emailer",
+        image: emailerIndiaTV1,
+        images: [
+          emailerIndiaTV1,
+          emailerIndiaTV2,
+          emailerIndiaTV3,
+          emailerIndiaTV4,
+          emailerIndiaTV5,
+          emailerIndiaTV6,
+        ],
       },
     ],
   };
@@ -1137,48 +1318,11 @@ export const WorkPage = () => {
           {/* Hero Content */}
           <div className="hero-content relative z-10 text-center px-6">
             <h1 className="text-7xl md:text-9xl font-bold mb-6">
-              {"Our Work".split("").map((letter, i) => (
-                <span
-                  key={i}
-                  className="hero-letter inline-block"
-                  style={{
-                    background:
-                      letter === " "
-                        ? "transparent"
-                        : `linear-gradient(135deg, ${
-                            [
-                              "#FBBF24",
-                              "#F59E0B",
-                              "#F97316",
-                              "#FB923C",
-                              "#FBBF24",
-                              "#F59E0B",
-                            ][i % 6]
-                          }, ${
-                            [
-                              "#F59E0B",
-                              "#F97316",
-                              "#FB923C",
-                              "#FBBF24",
-                              "#F59E0B",
-                              "#F97316",
-                            ][i % 6]
-                          })`,
-                    backgroundClip: letter === " " ? "border-box" : "text",
-                    WebkitBackgroundClip:
-                      letter === " " ? "border-box" : "text",
-                    WebkitTextFillColor:
-                      letter === " " ? "transparent" : "transparent",
-                    display: "inline-block",
-                    marginRight: letter === " " ? "1.5rem" : "0",
-                  }}
-                >
-                  {letter === " " ? "\u00A0" : letter}
-                </span>
-              ))}
+              <span className="text-white">Our</span>{" "}
+              <span className="text-white/50">Work</span>
             </h1>
             <p className="text-2xl md:text-3xl font-light mb-4 animate-fade-in-delay">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
                 Transforming visions into reality
               </span>
             </p>
@@ -1476,7 +1620,7 @@ export const WorkPage = () => {
                   }
                 >
                   <img
-                    src={brandingUTH1}
+                    src={brandingUTH2}
                     alt="UTH 1"
                     className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
@@ -1497,9 +1641,9 @@ export const WorkPage = () => {
                   }
                 >
                   <img
-                    src={brandingUTH2}
+                    src={brandingUTH1}
                     alt="UTH 2"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                     <p className="text-white font-semibold">
@@ -1668,10 +1812,90 @@ export const WorkPage = () => {
                 // subtitle="Brand Identity & Logo Marks"
               />
             </div>
+
+            {/* NOC Koffelo Section */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">NOC Koffelo</h3>
+                <p className="text-amber-400 text-lg font-semibold">Koffelo</p>
+                <p className="text-gray-300 leading-relaxed">
+                  NOC is India’s first Nitro-Cartridge Cold Brew Coffee, crafted
+                  with premium Brazilian and Ethiopian beans. This concentrated
+                  coffee shot delivers 2.4X caffeine—smooth, creamy, low acidic,
+                  and packed with instant energy.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 gap-4">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "NOC Koffelo",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={socialKoffelo2}
+                    alt="NOC Koffelo"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Cold Brew Coffee Section */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
+              <div className="grid grid-cols-1 gap-4 order-2 md:order-1">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-brown-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Branding & Packaging"].find(
+                        (p) => p.title === "Cold Brew Coffee",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={brandingColdBrew}
+                    alt="Cold Brew Coffee"
+                    className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Cold Brew Coffee
+                </h3>
+                <p className="text-stone-400 text-lg font-semibold">
+                  Cold Brew
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Experience the deep, rich flavor of cold brew in seconds.
+                  Koffelo Cold Brew Instant Coffee Powder is crafted from 100%
+                  premium Arabica beans using a slow cold brewing process for a
+                  naturally smooth, low-acidity taste. Freeze-dried to lock in
+                  freshness, just mix with cold or hot water / Milk-no brewing,
+                  no waiting.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Divider */}
-          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-lg shadow-amber-500/20"></div>
+          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent shadow-lg shadow-blue-500/20"></div>
 
           {/* Emailer Section */}
           <div className="mb-32" ref={setEmailerRef}>
@@ -1697,34 +1921,6 @@ export const WorkPage = () => {
                 across digital channels.
               </p>
             </div>
-
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white">India TV</h3>
-                <p className="text-pink-400 text-lg font-semibold">
-                  Digital Email Campaigns
-                </p>
-                {/* <p className="text-gray-300 leading-relaxed">
-                  Strategic email campaign designs tailored for broadcasting
-                  network with compelling visual storytelling, audience
-                  engagement strategies, and conversion-focused layouts.
-                </p> */}
-              </div>
-            </div>
-
-            {/* India TV Email Carousel */}
-            <HorizontalCarousel
-              images={[
-                emailerIndiaTV1,
-                emailerIndiaTV2,
-                emailerIndiaTV3,
-                emailerIndiaTV4,
-                emailerIndiaTV5,
-                emailerIndiaTV6,
-              ]}
-              // title=""
-              // subtitle=""
-            />
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
@@ -2014,6 +2210,7 @@ export const WorkPage = () => {
                     </p>
                   </div>
                 </div>
+
                 <div
                   className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 cursor-pointer"
                   onClick={() =>
@@ -2024,15 +2221,14 @@ export const WorkPage = () => {
                     )
                   }
                 >
-                  <img
-                    src={btlGanesh2}
-                    alt="Ganesh 2"
+                  <video
+                    src="/src/assets/ganesh.mp4"
+                    alt="Ganesh Campaign Video"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    poster={btlGanesh2}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">
-                      Click to view full gallery
-                    </p>
+                    <p className="text-white font-semibold">Campaign Video</p>
                   </div>
                 </div>
               </div>
@@ -2066,42 +2262,94 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Hero Electric Roadshow",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlHero1}
                     alt="Hero 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Hero Electric Roadshow",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlHero2}
                     alt="Hero 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in delay-500">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Holi Merchandising",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlHoli1}
                     alt="Holi 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Holi Merchandising",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={btlHoli2}
                     alt="Holi 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -2116,6 +2364,315 @@ export const WorkPage = () => {
                   retail spaces. Limited edition boxes designed to celebrate the
                   festival of colors with style.
                 </p>
+              </div>
+            </div>
+
+            {/* Vehicle Branding with Vinyl Printing */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Vehicle Branding with Vinyl Printing
+                </h3>
+                <p className="text-cyan-400 text-lg font-semibold">
+                  Various Clients
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Professional vehicle branding solutions using high-quality
+                  vinyl printing. Transforming commercial vehicles into mobile
+                  billboards with vibrant, durable graphics that capture
+                  attention on the move.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) =>
+                          p.title === "Vehicle Branding with Vinyl Printing",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlVehicleVinyl1}
+                    alt="Vehicle Vinyl 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) =>
+                          p.title === "Vehicle Branding with Vinyl Printing",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlVehicleVinyl2}
+                    alt="Vehicle Vinyl 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Vehicle Branding with Painting */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Vehicle Branding with Painting",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlVehiclePaint1}
+                    alt="Vehicle Paint 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Vehicle Branding with Painting",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlVehiclePaint2}
+                    alt="Vehicle Paint 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Vehicle Branding with Painting
+                </h3>
+                <p className="text-orange-400 text-lg font-semibold">
+                  Various Clients
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Custom hand-painted vehicle branding for lasting impact.
+                  Professional paint application creating permanent,
+                  weather-resistant brand presence on commercial fleets.
+                </p>
+              </div>
+            </div>
+
+            {/* Merchandising T-Shirt */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Merchandising T-Shirt
+                </h3>
+                <p className="text-violet-400 text-lg font-semibold">
+                  Various Brands
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Custom branded merchandise bringing brands to life through
+                  quality apparel. Creative t-shirt designs for promotional
+                  campaigns, events, and brand visibility initiatives.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Merchandising T-Shirt",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlMerchandising3}
+                    alt="Merchandising 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Merchandising T-Shirt",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlMerchandising5}
+                    alt="Merchandising 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Nissan Kicks Mall Activation */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Nissan Kicks Mall Activation",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlNissan1}
+                    alt="Nissan 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-gray-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "Nissan Kicks Mall Activation",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlNissan2}
+                    alt="Nissan 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Nissan Kicks Mall Activation
+                </h3>
+                <p className="text-red-400 text-lg font-semibold">
+                  Nissan - Multi-City
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Premium mall activation campaign for Nissan Kicks across
+                  Delhi, Mumbai, Kolkata, and Bangalore. Interactive displays
+                  driving footfall and test drive bookings in high-traffic
+                  retail locations.
+                </p>
+              </div>
+            </div>
+
+            {/* PTC Digital Film Fare */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  PTC Digital Film Fare
+                </h3>
+                <p className="text-yellow-400 text-lg font-semibold">
+                  PTC Network
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  On-ground activation for PTC Digital Film Fare awards.
+                  Engaging experiential setup driving audience participation and
+                  social media buzz around the prestigious awards event.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "PTC Digital Film Fare",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlPTCFilmfare1}
+                    alt="PTC Filmfare 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["BTL Activities"].find(
+                        (p) => p.title === "PTC Digital Film Fare",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlPTCFilmfare2}
+                    alt="PTC Filmfare 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2163,42 +2720,94 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Airtel Leadership Conclave",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventAirtel1}
                     alt="Airtel 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Airtel Leadership Conclave",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventAirtel2}
                     alt="Airtel 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-100">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-700/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-amber-700/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Bacardi NH7 Weekender",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventBacardi1}
                     alt="Bacardi 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-600/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Bacardi NH7 Weekender",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventBacardi2}
                     alt="Bacardi 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -2231,42 +2840,94 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "HP Asia Employee Meet",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventHP1}
                     alt="HP 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-400/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-400/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "HP Asia Employee Meet",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventHP2}
                     alt="HP 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-300">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "PTC Filmfare Awards",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventPTC1}
                     alt="PTC 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "PTC Filmfare Awards",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventPTC2}
                     alt="PTC 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -2299,42 +2960,94 @@ export const WorkPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Paras Annual Meeting",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventParas1}
                     alt="Paras 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Paras Annual Meeting",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventParas2}
                     alt="Paras 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in delay-500">
               <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Rangotsav Festival",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventRangotsav1}
                     alt="Rangotsav 1"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
-                <div className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Events"].find(
+                        (p) => p.title === "Rangotsav Festival",
+                      ),
+                    )
+                  }
+                >
                   <img
                     src={eventRangotsav2}
                     alt="Rangotsav 2"
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="space-y-6 order-1 md:order-2">
@@ -2387,53 +3100,78 @@ export const WorkPage = () => {
                   img1: exhibPragati1,
                   img2: exhibPragati2,
                   title: "Pragati Maidan Stall",
-                  // client: "Multi-Client",
                 },
                 {
                   img1: exhibAahar1,
                   img2: exhibAahar2,
                   title: "Aahar 2025 Stall",
-                  // client: "Aahar",
                 },
                 {
                   img1: exhibAnuga1,
                   img2: exhibAnuga2,
                   title: "Anuga 2024 Stall",
-                  // client: "Anuga",
                 },
                 {
                   img1: exhibJSW1,
                   img2: exhibJSW2,
                   title: "JSW Exhibition Stall",
-                  // client: "JSW",
                 },
                 {
                   img1: exhibIITF1,
                   img2: exhibIITF2,
                   title: "IITF 2024 Stall",
-                  // client: "IITF",
+                },
+                {
+                  img1: exhibReliance1,
+                  img2: exhibReliance2,
+                  title: "Reliance Met City",
+                },
+                {
+                  img1: exhibIFF1,
+                  img2: exhibIFF2,
+                  title: "IFF 2024 Stall",
+                },
+                {
+                  img1: exhibMithai1,
+                  img2: exhibMithai2,
+                  title: "World Mithai Namkeen Convention 2024",
                 },
               ].map((stall, idx) => (
                 <div
                   key={idx}
-                  className={`group animate-fade-in delay-${(idx + 1) * 100}`}
+                  className={`group cursor-pointer animate-fade-in delay-${(idx + 1) * 100}`}
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Exhibition Stalls"].find(
+                        (p) => p.title === stall.title,
+                      ),
+                    )
+                  }
                 >
-                  <div className="grid grid-cols-2 gap-2 mb-4 overflow-hidden rounded-lg">
-                    <img
-                      src={stall.img1}
-                      alt={`${stall.title} 1`}
-                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <img
-                      src={stall.img2}
-                      alt={`${stall.title} 2`}
-                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                  <div className="grid grid-cols-2 gap-2 mb-4 overflow-hidden rounded-lg relative">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={stall.img1}
+                        alt={`${stall.title} 1`}
+                        className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={stall.img2}
+                        alt={`${stall.title} 2`}
+                        className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 col-span-2">
+                      <p className="text-white font-semibold">
+                        Click to view full gallery
+                      </p>
+                    </div>
                   </div>
-                  <h4 className="text-lg font-semibold text-slate-900 mb-1">
+                  <h4 className="text-lg font-semibold text-white mb-1">
                     {stall.title}
                   </h4>
-                  <p className="text-gray-600 text-sm">{stall.client}</p>
                 </div>
               ))}
             </div>
@@ -2468,59 +3206,68 @@ export const WorkPage = () => {
                   img1: socialParas1,
                   img2: socialParas2,
                   title: "Paras Dairy",
-                  // client: "Paras Dairy",
                 },
                 {
                   img1: socialIndiaTV1,
                   img2: socialIndiaTV2,
                   title: "India TV",
-                  // client: "India TV",
                 },
                 {
-                  img1: socialKoffelo1,
-                  img2: socialKoffelo2,
+                  img1: socialKoffelo4,
+                  img2: socialKoffelo5,
                   title: "Koffelo",
-                  // client: "Koffelo",
                 },
                 {
                   img1: socialAmarUjala1,
                   img2: socialAmarUjala2,
                   title: "Amar Ujala",
-                  // client: "Amar Ujala",
                 },
                 {
                   img1: socialPTC1,
                   img2: socialPTC2,
-                  title: "PTC Network",
-                  // client: "PTC",
+                  title: "PTC",
                 },
                 {
                   img1: socialGeniefie1,
                   img2: socialGeniefie2,
                   title: "Geniefie",
-                  // client: "Geniefie",
                 },
               ].map((social, idx) => (
                 <div
                   key={idx}
-                  className={`group animate-fade-in delay-${(idx + 1) * 100}`}
+                  className={`group cursor-pointer animate-fade-in delay-${(idx + 1) * 100}`}
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Social Media"].find(
+                        (p) => p.title === social.title,
+                      ),
+                    )
+                  }
                 >
-                  <div className="grid grid-cols-2 gap-2 mb-6 overflow-hidden rounded-lg">
-                    <img
-                      src={social.img1}
-                      alt={`${social.title} 1`}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <img
-                      src={social.img2}
-                      alt={`${social.title} 2`}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                  <div className="grid grid-cols-2 gap-2 mb-6 overflow-hidden rounded-lg relative">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={social.img1}
+                        alt={`${social.title} 1`}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={social.img2}
+                        alt={`${social.title} 2`}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 col-span-2">
+                      <p className="text-white font-semibold">
+                        Click to view full gallery
+                      </p>
+                    </div>
                   </div>
-                  <h4 className="text-lg font-semibold text-slate-900 mb-1">
+                  <h4 className="text-lg font-semibold text-white mb-1">
                     {social.title}
                   </h4>
-                  <p className="text-gray-600 text-sm">{social.client}</p>
                 </div>
               ))}
             </div>

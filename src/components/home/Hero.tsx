@@ -3,6 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { PageType } from "../../types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { IndianBackgroundPattern } from "../IndianBackgroundPattern";
+import backgroundVideo from "../../assets/8.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,6 +98,38 @@ export const Hero = ({ onNavigate }: HeroProps) => {
       ).matches;
 
       // Horizontal scroll animation like Salt Agency for the heading
+      // if (
+      //   horizontalTextRef.current &&
+      //   heroRef.current &&
+      //   !prefersReducedMotion
+      // ) {
+      //   const lines =
+      //     horizontalTextRef.current.querySelectorAll(".heading-line");
+
+      //   lines.forEach((line, index) => {
+      //     gsap.fromTo(
+      //       line,
+      //       {
+      //         x: 0, // Start at normal position (visible)
+      //       },
+      //       {
+      //         x: () => {
+      //           // Move left by different amounts for each line
+      //           return -300 * (index + 1);
+      //         },
+      //         ease: "none",
+      //         scrollTrigger: {
+      //           trigger: heroRef.current,
+      //           start: "top top",
+      //           end: "+=200%",
+      //           scrub: 1,
+      //           pin: true,
+      //         },
+      //       },
+      //     );
+      //   });
+      // }
+      //
       if (
         horizontalTextRef.current &&
         heroRef.current &&
@@ -104,26 +138,27 @@ export const Hero = ({ onNavigate }: HeroProps) => {
         const lines =
           horizontalTextRef.current.querySelectorAll(".heading-line");
 
+        // 🔒 ONE timeline, ONE pin
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "+=120%", // 🔧 shorter scroll distance = faster
+            scrub: 0.7,
+            pin: true,
+            // anticipatePin: 1, // extra smoothness
+          },
+        });
+
+        // Animate each line with different movement
         lines.forEach((line, index) => {
-          gsap.fromTo(
+          tl.to(
             line,
             {
-              x: 0, // Start at normal position (visible)
-            },
-            {
-              x: () => {
-                // Move left by different amounts for each line
-                return -300 * (index + 1);
-              },
+              x: -300 * (index + 1),
               ease: "none",
-              scrollTrigger: {
-                trigger: heroRef.current,
-                start: "top top",
-                end: "+=200%",
-                scrub: 1,
-                pin: true,
-              },
             },
+            0, // 👈 all animations start together
           );
         });
       }
@@ -192,23 +227,18 @@ export const Hero = ({ onNavigate }: HeroProps) => {
       ref={heroRef}
       className="relative min-h-screen bg-black text-white overflow-hidden flex items-center"
     >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-50"></div>
-        <div className="absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
-      </div>
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
 
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.5) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.5) 75%, rgba(255,255,255,.5) 76%, transparent 77%, transparent)`,
-            backgroundSize: "60px 60px",
-          }}
-        ></div>
-      </div>
+      {/* Professional Indian-Inspired Background Overlay */}
 
       {/* Main Content */}
       <div className="relative z-10 w-full px-6 lg:px-12 py-20">

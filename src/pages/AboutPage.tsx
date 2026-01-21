@@ -1,10 +1,15 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PageType } from "../types";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const AboutPage = () => {
+interface AboutPageProps {
+  onNavigate?: (page: PageType) => void;
+}
+
+export const AboutPage = ({ onNavigate }: AboutPageProps = {}) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -394,19 +399,22 @@ export const AboutPage = () => {
               }}
             >
               <h1 className="text-7xl md:text-9xl font-bold mb-8 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
-                  Strategic
-                </span>
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-white to-amber-600">
-                  Thinking.
-                </span>
+                <span className="text-white">Strategic</span>{" "}
+                <span className="text-white/50">Thinking.</span>
               </h1>
             </div>
 
             <div className="hero-subtitle" style={{ willChange: "transform" }}>
-              <p className="text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 mb-8 max-w-3xl mx-auto leading-relaxed font-semibold">
-                Building brand ecosystems that perform across touchpoints.
+              <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-8">
+                Building{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 font-bold">
+                  brand
+                </span>{" "}
+                ecosystems that{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 font-bold">
+                  perform across touchpoints
+                </span>
+                .
               </p>
             </div>
 
@@ -419,13 +427,8 @@ export const AboutPage = () => {
               }}
             >
               <h2 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
-                  Creative
-                </span>
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
-                  Execution.
-                </span>
+                <span className="text-white">Creative</span>{" "}
+                <span className="text-white/50">Execution.</span>
               </h2>
               <p className="text-xl md:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 max-w-2xl mx-auto font-medium">
                 Real results through clarity and confidence.
@@ -555,7 +558,10 @@ export const AboutPage = () => {
             Ready to transform your brand and drive real results? Let's start
             the conversation.
           </p>
-          <button className="bg-amber-500 hover:bg-amber-600 text-white px-12 py-6 rounded-full font-semibold text-xl transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-amber-500/50">
+          <button
+            onClick={() => onNavigate?.("contact")}
+            className="bg-amber-500 hover:bg-amber-600 text-white px-12 py-6 rounded-full font-semibold text-xl transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-amber-500/50"
+          >
             Get in Touch
           </button>
         </div>

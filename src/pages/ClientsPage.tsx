@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CheckCircle } from "lucide-react";
+import { PageType } from "../types";
 import hp from "../../src/assets/Logo/hp.png";
 import airtel from "../../src/assets/Logo/Airtel Logo.png";
 import assocham from "../../src/assets/Logo/Assocham logo.png";
@@ -37,10 +38,15 @@ import paras from "../../src/assets/Logo/Paras logo.png";
 import porter from "../../src/assets/porter.png";
 import amarjula from "../../src/assets/Amar Ujala.png";
 import indiatv from "../../src/assets/indiatv.png";
+import koffeelo from "../../src/assets/koffelo.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const ClientsPage = () => {
+interface ClientsPageProps {
+  onNavigate?: (page: PageType) => void;
+}
+
+export const ClientsPage = ({ onNavigate }: ClientsPageProps = {}) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,6 +54,11 @@ export const ClientsPage = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const clients = [
+    indiatv,
+    lamaar,
+    paras,
+    porter,
+    koffeelo,
     hp,
     airtel,
     amarjula,
@@ -61,12 +72,10 @@ export const ClientsPage = () => {
     hm,
     hindustan,
     hotstar,
-    indiatv,
     indianoil,
     isuzu,
     jeep,
     kotak,
-    lamaar,
     lg,
     nissan,
     oral,
@@ -81,8 +90,6 @@ export const ClientsPage = () => {
     vivo,
     wt,
     zee,
-    paras,
-    porter,
   ];
 
   const colors = [
@@ -99,22 +106,22 @@ export const ClientsPage = () => {
   const reasons = [
     {
       text: "Transparent collaboration",
-      gradient: "from-pink-400 to-rose-500",
+      gradient: "from-amber-400 via-orange-500 to-amber-600",
       icon: "💎",
     },
     {
       text: "Strong strategic foundation",
-      gradient: "from-blue-400 to-cyan-500",
+      gradient: "from-amber-400 via-orange-400 to-amber-500",
       icon: "🚀",
     },
     {
       text: "Consistent delivery",
-      gradient: "from-purple-400 to-violet-500",
+      gradient: "from-amber-300 via-orange-400 to-amber-500",
       icon: "⚡",
     },
     {
       text: "Results-driven mindset",
-      gradient: "from-green-400 to-emerald-500",
+      gradient: "from-amber-300 via-orange-300 to-amber-400",
       icon: "🎯",
     },
   ];
@@ -200,24 +207,13 @@ export const ClientsPage = () => {
             toggleActions: "play none none reverse",
           },
           scale: 0,
-          rotation: 360,
           opacity: 0,
           duration: 1,
           delay: i * 0.03,
           ease: "elastic.out(1, 0.5)",
         });
 
-        // Floating animation
-        gsap.to(card, {
-          y: `random(-20, 20)`,
-          x: `random(-10, 10)`,
-          rotation: `random(-5, 5)`,
-          duration: `random(3, 5)`,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          delay: i * 0.05,
-        });
+        // No floating animation - keep grid straight
       });
 
       // Reason cards - liquid slide in
@@ -406,15 +402,15 @@ export const ClientsPage = () => {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center z-10">
           <div className="mb-12">
             <h1 className="text-7xl md:text-9xl font-black leading-none mb-8">
-              <div className="hero-title-word inline-block bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 text-transparent bg-clip-text">
+              <div className="hero-title-word inline-block text-white">
                 Brands
               </div>
               <br />
-              <div className="hero-title-word inline-block bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 text-transparent bg-clip-text">
+              <div className="hero-title-word inline-block text-white/50">
                 That
               </div>
               <br />
-              <div className="hero-title-word inline-block bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 text-transparent bg-clip-text">
+              <div className="hero-title-word inline-block text-white">
                 Trust Us
               </div>
             </h1>
@@ -475,18 +471,17 @@ export const ClientsPage = () => {
           <div className="text-center mb-20">
             <h2 className="section-title text-6xl md:text-7xl font-black mb-6">
               <span className="wave-text inline-block">
-                <span className="inline-block text-amber-400">T</span>
-                <span className="inline-block text-amber-500">r</span>
-                <span className="inline-block text-orange-400">u</span>
-                <span className="inline-block text-orange-500">s</span>
-                <span className="inline-block text-amber-400">t</span>
-                <span className="inline-block text-orange-400">e</span>
-                <span className="inline-block text-amber-500">d</span>
+                <span className="inline-block text-white">T</span>
+                <span className="inline-block text-white">r</span>
+                <span className="inline-block text-white">u</span>
+                <span className="inline-block text-white">s</span>
+                <span className="inline-block text-white">t</span>
+                <span className="inline-block text-white">e</span>
+                <span className="inline-block text-white">d</span>
               </span>
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600">
-                By Industry Leaders
-              </span>
+              <span className="text-white">By</span>{" "}
+              <span className="text-white/50">Industry Leaders</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               We're proud to partner with innovative brands across industries.
@@ -510,11 +505,11 @@ export const ClientsPage = () => {
                     backgroundSize: "200% 200%",
                   }}
                 >
-                  <div className="w-full h-full bg-slate-900 rounded-3xl"></div>
+                  <div className="w-full h-full bg-gray-50 rounded-3xl"></div>
                 </div>
 
                 {/* Card content */}
-                <div className="relative p-8 flex items-center justify-center min-h-[180px] bg-slate-900/50 backdrop-blur-sm rounded-3xl">
+                <div className="relative p-8 flex items-center justify-center min-h-[180px] bg-gray-50 backdrop-blur-sm rounded-3xl">
                   {/* Gradient glow on hover */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${colors[index % colors.length]} opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-2xl`}
@@ -524,7 +519,7 @@ export const ClientsPage = () => {
                   <img
                     src={client}
                     alt="Client logo"
-                    className="w-28 h-auto object-contain transform group-hover:scale-125 transition-all duration-500 relative z-10 filter invert brightness-0 contrast-200 group-hover:brightness-100"
+                    className="w-28 h-auto object-contain transform group-hover:scale-110 transition-all duration-500 relative z-10"
                     loading="lazy"
                   />
 
@@ -553,8 +548,15 @@ export const ClientsPage = () => {
 
         <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="section-title text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 mb-6">
-              Why Choose Us
+            <h2 className="section-title text-6xl md:text-7xl font-black mb-6">
+              <span className="wave-text inline-block">
+                <span className="inline-block text-white">W</span>
+                <span className="inline-block text-white">h</span>
+                <span className="inline-block text-white">y</span>
+              </span>
+              <br />
+              <span className="text-white">Choose</span>{" "}
+              <span className="text-white/50">Us</span>
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Our commitment to excellence sets us apart.
@@ -573,20 +575,20 @@ export const ClientsPage = () => {
                 ></div>
 
                 {/* Content */}
-                <div className="relative p-10 flex items-center gap-8">
+                <div className="relative p-6 flex items-center gap-6">
                   {/* Icon */}
-                  <div className="flex-shrink-0 w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-2xl">
+                  <div className="flex-shrink-0 w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-2xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-2xl">
                     {reason.icon}
                   </div>
 
                   {/* Text */}
-                  <p className="text-3xl md:text-4xl text-white font-bold flex-grow">
+                  <p className="text-xl md:text-2xl text-white font-bold flex-grow">
                     {reason.text}
                   </p>
 
                   {/* Check icon */}
-                  <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center transform group-hover:scale-125 transition-transform duration-500">
-                    <CheckCircle className="text-white" size={28} />
+                  <div className="flex-shrink-0 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center transform group-hover:scale-125 transition-transform duration-500">
+                    <CheckCircle className="text-white" size={22} />
                   </div>
                 </div>
 
@@ -623,11 +625,17 @@ export const ClientsPage = () => {
             Let's create something remarkable together.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="group relative bg-white text-purple-600 px-12 py-6 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 shadow-2xl overflow-hidden">
+            <button
+              onClick={() => onNavigate?.("contact")}
+              className="group relative bg-white text-purple-600 px-12 py-6 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 shadow-2xl overflow-hidden"
+            >
               <span className="relative z-10">Start a Project</span>
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </button>
-            <button className="bg-white/10 hover:bg-white/20 text-white px-12 py-6 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-md border-2 border-white/30">
+            <button
+              onClick={() => onNavigate?.("work")}
+              className="bg-white/10 hover:bg-white/20 text-white px-12 py-6 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-md border-2 border-white/30"
+            >
               View Case Studies
             </button>
           </div>
