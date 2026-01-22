@@ -53,17 +53,17 @@ export const Header = ({ currentPage, onNavigate }: HeaderProps) => {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-24">
-            <div className="h-[120px] mt-8">
-              <img src={BoopLogo} className="h-full w-full" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
+            <div className="h-12 sm:h-16 lg:h-[120px] w-auto mt-0 sm:mt-4 lg:mt-8">
+              <img src={BoopLogo} className="h-full w-auto object-contain" />
             </div>
-            <nav className="hidden md:flex items-center space-x-10">
+            <nav className="hidden md:flex items-center space-x-4 lg:space-x-10">
               {navItems.map((item) => (
                 <button
                   key={item.page}
                   onClick={() => handleNavClick(item.page)}
-                  className={`text-sm font-light tracking-wide transition-all duration-300 ${
+                  className={`text-xs sm:text-sm lg:text-sm font-light tracking-wide transition-all duration-300 ${
                     currentPage === item.page
                       ? "text-white"
                       : "text-gray-400 hover:text-white"
@@ -72,16 +72,16 @@ export const Header = ({ currentPage, onNavigate }: HeaderProps) => {
                   {item.label}
                 </button>
               ))}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 lg:gap-3">
                 <button
                   onClick={() => handleNavClick("contact")}
-                  className="bg-white text-black px-6 py-2.5 rounded-full font-medium hover:bg-gray-100 transition-all duration-300"
+                  className="bg-white text-black px-3 lg:px-6 py-2 lg:py-2.5 rounded-full font-medium text-xs lg:text-sm hover:bg-gray-100 transition-all duration-300"
                 >
                   Let's Discuss
                 </button>
                 <button
                   onClick={handleWhatsAppClick}
-                  className="group relative bg-[#25D366] hover:bg-[#20BA5A] text-white p-2.5 rounded-full transition-all hover:scale-110 shadow-lg animate-whatsapp-pop"
+                  className="group relative bg-[#25D366] hover:bg-[#20BA5A] text-white p-2 lg:p-2.5 rounded-full transition-all hover:scale-110 shadow-lg animate-whatsapp-pop"
                   aria-label="Contact us on WhatsApp"
                   title="Chat on WhatsApp"
                 >
@@ -91,7 +91,7 @@ export const Header = ({ currentPage, onNavigate }: HeaderProps) => {
                   <svg
                     viewBox="0 0 32 32"
                     fill="currentColor"
-                    className="w-5 h-5 relative z-10"
+                    className="w-4 lg:w-5 h-4 lg:h-5 relative z-10"
                   >
                     <path d="M16.002 0C7.165 0 0 7.165 0 16.002c0 2.833.744 5.49 2.04 7.802L.696 31.197l7.594-1.99c2.23 1.213 4.792 1.91 7.512 1.91h.006c8.832 0 16-7.165 16-16C31.808 7.165 24.838 0 16.002 0zm0 29.27c-2.407 0-4.766-.647-6.828-1.87l-.488-.29-5.064 1.327 1.352-4.938-.318-.506C2.94 21.036 2.27 18.56 2.27 16.002c0-7.58 6.165-13.745 13.738-13.745 3.67 0 7.116 1.43 9.708 4.023 2.592 2.592 4.023 6.038 4.023 9.708 0 7.58-6.17 13.745-13.738 13.745v.001zm7.544-10.294c-.413-.207-2.448-1.208-2.827-1.345-.38-.138-.656-.207-.932.207-.276.413-1.07 1.345-1.31 1.62-.242.276-.483.31-.897.103-.413-.207-1.745-.644-3.323-2.05-1.23-1.095-2.06-2.448-2.3-2.86-.24-.414-.026-.638.18-.844.186-.186.414-.483.62-.724.207-.242.276-.414.414-.69.138-.276.07-.518-.034-.724-.103-.207-.932-2.244-1.276-3.07-.338-.804-.68-.696-.932-.707-.242-.01-.518-.013-.794-.013s-.724.103-1.103.518c-.38.413-1.448 1.414-1.448 3.448s1.483 4 1.69 4.276c.206.276 2.914 4.448 7.06 6.236.986.426 1.756.68 2.356.87.99.315 1.892.27 2.604.163.794-.118 2.448-.998 2.792-1.966.345-.966.345-1.794.242-1.966-.103-.172-.38-.276-.793-.483z" />
                   </svg>

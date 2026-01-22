@@ -1,0 +1,30 @@
+# Robots.txt for BoopOrg - SEO Configuration
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /node_modules/
+
+# Allow crawling of static assets
+Allow: /assets/
+Allow: /src/
+
+# Sitemap location
+Sitemap: https://booporg.com/sitemap.xml
+
+# Crawl delay to prevent server overload
+Crawl-delay: 1
+
+# User-agents for search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
