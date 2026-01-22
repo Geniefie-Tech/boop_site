@@ -8,7 +8,7 @@ import marketing from "../../assets/marketing.jpg";
 import creative from "../../assets/creative.jpg";
 import amaarujala from "../../assets/Logo/amaarujala.png";
 import indiatv from "../../assets/Logo/IndiaTV.png";
-import lamar from "../../assets/Logo/Lamar.png";
+import lamar from "../../assets/Logo/Lamaar logo.png";
 import porter from "../../assets/Logo/Porter.png";
 import wildthing from "../../assets/Logo/wildthing.png";
 import koffelo from "../../assets/Logo/Koffelo logo.png";
