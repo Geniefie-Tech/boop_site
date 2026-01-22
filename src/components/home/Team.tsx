@@ -40,13 +40,13 @@ const teamMembers: TeamMember[] = [
   {
     id: 3,
     name: "Shailen Bardhan",
-    role: "Creative Head",
+    role: "Head of Creative",
     image: shailin,
   },
   {
     id: 4,
     name: "Neithal Rajpurohit",
-    role: "Frontend Developer",
+    role: "Software Engineer",
     image: neithal,
   },
   {
@@ -76,7 +76,7 @@ const teamMembers: TeamMember[] = [
   {
     id: 9,
     name: "Ayush Kumar",
-    role: "Backend Developer",
+    role: "Software Engineer",
     image: ayush,
   },
   {
@@ -96,6 +96,12 @@ const teamMembers: TeamMember[] = [
     name: "Sonu Saxena",
     role: "Admin",
     image: sonu,
+  },
+  {
+    id: 13,
+    name: "Ravi Bhist",
+    role: "Video Editor",
+    image: ravi,
   },
 ];
 

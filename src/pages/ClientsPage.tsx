@@ -19,7 +19,9 @@ import indianoil from "../assets/Logo/Indian_Oil_Logo.svg.png";
 import isuzu from "../assets/Logo/isuzu.png";
 import jeep from "../assets/jeep.png";
 import kotak from "../assets/Logo/Kotak logo.png";
-import lamaar from "../assets/Lamar.png";
+import lamaar from "../assets/Artboard 1Lamar logo black.png";
+import basicInstant from "../assets/BI in Black.png";
+
 import lg from "../assets/lg.png";
 import nissan from "../assets/Logo/Nissan Logo.png";
 import oral from "../assets/Logo/Oral B Logo.png";
@@ -56,6 +58,7 @@ export const ClientsPage = ({ onNavigate }: ClientsPageProps = {}) => {
   const clients = [
     indiatv,
     lamaar,
+    basicInstant,
     paras,
     porter,
     koffeelo,

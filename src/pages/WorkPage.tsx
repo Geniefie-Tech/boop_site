@@ -600,20 +600,6 @@ export const WorkPage = () => {
         images: [btlVehiclePaint1, btlVehiclePaint2],
       },
       {
-        title: "Merchandising T-Shirt",
-        client: "Various",
-        category: "BTL Activities",
-        image: btlMerchandising1,
-        images: [
-          btlMerchandising1,
-          btlMerchandising2,
-          btlMerchandising3,
-          btlMerchandising4,
-          btlMerchandising5,
-          btlMerchandising6,
-        ],
-      },
-      {
         title: "Nissan Kicks Mall Activation",
         client: "Nissan",
         category: "BTL Activities",
@@ -626,6 +612,34 @@ export const WorkPage = () => {
         category: "BTL Activities",
         image: btlPTCFilmfare1,
         images: [btlPTCFilmfare1, btlPTCFilmfare2],
+      },
+    ],
+    Merchandising: [
+      {
+        title: "Diwali Merchandising",
+        client: "Paras Dairy",
+        category: "Merchandising",
+        image: btlDiwali1,
+        images: [btlDiwali1, btlDiwali2],
+      },
+      {
+        title: "Holi Merchandising",
+        client: "Paras Dairy",
+        category: "Merchandising",
+        image: btlHoli1,
+        images: [btlHoli1, btlHoli2],
+      },
+      {
+        title: "Merchandising T-Shirt",
+        client: "Various",
+        category: "Merchandising",
+        image: btlMerchandising1,
+        images: [
+          btlMerchandising1,
+          btlMerchandising3,
+          btlMerchandising4,
+          btlMerchandising5,
+        ],
       },
     ],
     Events: [
@@ -2067,66 +2081,6 @@ export const WorkPage = () => {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in delay-200">
-              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div
-                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    handleProjectClick(
-                      portfolio["BTL Activities"].find(
-                        (p) => p.title === "Diwali Merchandising",
-                      ),
-                    )
-                  }
-                >
-                  <img
-                    src={btlDiwali1}
-                    alt="Diwali 1"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">
-                      Click to view full gallery
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    handleProjectClick(
-                      portfolio["BTL Activities"].find(
-                        (p) => p.title === "Diwali Merchandising",
-                      ),
-                    )
-                  }
-                >
-                  <img
-                    src={btlDiwali2}
-                    alt="Diwali 2"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">
-                      Click to view full gallery
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-6 order-1 md:order-2">
-                <h3 className="text-2xl font-bold text-white">
-                  Diwali Merchandising
-                </h3>
-                <p className="text-orange-400 text-lg font-semibold">
-                  Paras Dairy
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  Festive campaign celebrating Diwali with specially designed
-                  merchandising boxes. Captured the spirit of the celebration
-                  while driving brand engagement and sales.
-                </p>
-              </div>
-            </div>
-
             <div className="grid md:grid-cols-2 gap-12 items-center mt-20">
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-white">
@@ -2234,7 +2188,7 @@ export const WorkPage = () => {
               </div>
               <div className="space-y-6 order-1 md:order-2">
                 <h3 className="text-2xl font-bold text-white">
-                  Ganesh Chathurti Campaign
+                  Ganesh Chathurti 360° Campaign
                 </h3>
                 <p className="text-purple-400 text-lg font-semibold">
                   ABP Majha
@@ -2304,66 +2258,6 @@ export const WorkPage = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in delay-500">
-              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
-                <div
-                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    handleProjectClick(
-                      portfolio["BTL Activities"].find(
-                        (p) => p.title === "Holi Merchandising",
-                      ),
-                    )
-                  }
-                >
-                  <img
-                    src={btlHoli1}
-                    alt="Holi 1"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">
-                      Click to view full gallery
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    handleProjectClick(
-                      portfolio["BTL Activities"].find(
-                        (p) => p.title === "Holi Merchandising",
-                      ),
-                    )
-                  }
-                >
-                  <img
-                    src={btlHoli2}
-                    alt="Holi 2"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">
-                      Click to view full gallery
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-6 order-1 md:order-2">
-                <h3 className="text-2xl font-bold text-white">
-                  Holi Merchandising
-                </h3>
-                <p className="text-rose-400 text-lg font-semibold">
-                  Paras Dairy
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  Festival merchandising campaign bringing colors of Holi to
-                  retail spaces. Limited edition boxes designed to celebrate the
-                  festival of colors with style.
-                </p>
               </div>
             </div>
 
@@ -2489,67 +2383,6 @@ export const WorkPage = () => {
                   Professional paint application creating permanent,
                   weather-resistant brand presence on commercial fleets.
                 </p>
-              </div>
-            </div>
-
-            {/* Merchandising T-Shirt */}
-            <div className="grid md:grid-cols-2 gap-12 items-center mt-20 animate-fade-in">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white">
-                  Merchandising T-Shirt
-                </h3>
-                <p className="text-violet-400 text-lg font-semibold">
-                  Various Brands
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  Custom branded merchandise bringing brands to life through
-                  quality apparel. Creative t-shirt designs for promotional
-                  campaigns, events, and brand visibility initiatives.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div
-                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    handleProjectClick(
-                      portfolio["BTL Activities"].find(
-                        (p) => p.title === "Merchandising T-Shirt",
-                      ),
-                    )
-                  }
-                >
-                  <img
-                    src={btlMerchandising3}
-                    alt="Merchandising 1"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">
-                      Click to view full gallery
-                    </p>
-                  </div>
-                </div>
-                <div
-                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 cursor-pointer"
-                  onClick={() =>
-                    handleProjectClick(
-                      portfolio["BTL Activities"].find(
-                        (p) => p.title === "Merchandising T-Shirt",
-                      ),
-                    )
-                  }
-                >
-                  <img
-                    src={btlMerchandising5}
-                    alt="Merchandising 2"
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">
-                      Click to view full gallery
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -2948,7 +2781,7 @@ export const WorkPage = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-400">
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-white">
-                  Paras Annual Sales Meeting
+                  Paras Annual Sales Meet
                 </h3>
                 <p className="text-blue-400 text-lg font-semibold">
                   Mussoorie - 2024
@@ -3270,6 +3103,215 @@ export const WorkPage = () => {
                   </h4>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="my-32 relative h-1 bg-gradient-to-r from-transparent via-pink-400 to-transparent shadow-lg shadow-pink-500/20"></div>
+
+          {/* Merchandising Section */}
+          <div>
+            <div className="text-center mb-16">
+              <div className="inline-block mb-4">
+                <span className="glass px-4 py-2 rounded-full text-pink-400 font-semibold text-sm uppercase tracking-widest">
+                  Category 07
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wider">
+                MERCHANDISING &<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-400 to-fuchsia-400">
+                  PROMOTIONAL
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Custom branded merchandise and promotional campaigns that bring
+                brands to life through quality products and creative executions.
+              </p>
+            </div>
+
+            {/* Diwali Merchandising */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Diwali Merchandising
+                </h3>
+                <p className="text-orange-400 text-lg font-semibold">
+                  Paras Dairy
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Festive campaign celebrating Diwali with specially designed
+                  merchandising boxes. Captured the spirit of the celebration
+                  while driving brand engagement and sales through thematic
+                  packaging.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Merchandising"].find(
+                        (p) => p.title === "Diwali Merchandising",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlDiwali1}
+                    alt="Diwali 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Merchandising"].find(
+                        (p) => p.title === "Diwali Merchandising",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlDiwali2}
+                    alt="Diwali 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Holi Merchandising */}
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in delay-100">
+              <div className="grid grid-cols-2 gap-4 order-2 md:order-1">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-pink-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Merchandising"].find(
+                        (p) => p.title === "Holi Merchandising",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlHoli1}
+                    alt="Holi 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-rose-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Merchandising"].find(
+                        (p) => p.title === "Holi Merchandising",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlHoli2}
+                    alt="Holi 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-6 order-1 md:order-2">
+                <h3 className="text-2xl font-bold text-white">
+                  Holi Merchandising
+                </h3>
+                <p className="text-rose-400 text-lg font-semibold">
+                  Paras Dairy
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Festival merchandising campaign bringing colors of Holi to
+                  retail spaces. Limited edition boxes designed to celebrate the
+                  festival of colors with style and cultural authenticity.
+                </p>
+              </div>
+            </div>
+
+            {/* Merchandising T-Shirt */}
+            <div className="grid md:grid-cols-2 gap-12 items-center animate-fade-in delay-200">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Merchandising T-Shirt
+                </h3>
+                <p className="text-violet-400 text-lg font-semibold">
+                  Various Brands
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  Custom branded merchandise bringing brands to life through
+                  quality apparel. Creative t-shirt designs for promotional
+                  campaigns, events, and brand visibility initiatives across
+                  multiple industries.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-violet-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Merchandising"].find(
+                        (p) => p.title === "Merchandising T-Shirt",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlMerchandising3}
+                    alt="Merchandising 1"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="project-card group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 cursor-pointer"
+                  onClick={() =>
+                    handleProjectClick(
+                      portfolio["Merchandising"].find(
+                        (p) => p.title === "Merchandising T-Shirt",
+                      ),
+                    )
+                  }
+                >
+                  <img
+                    src={btlMerchandising5}
+                    alt="Merchandising 2"
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

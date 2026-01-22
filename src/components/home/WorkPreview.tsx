@@ -5,10 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import asli from "../../assets/Asli.png";
 import marketing from "../../assets/marketing.jpg";
-import creative from "../../assets/creative.jpg";
+import creative from "../../assets/creative.png";
 import amaarujala from "../../assets/Logo/amaarujala.png";
 import indiatv from "../../assets/Logo/IndiaTV.png";
-import lamar from "../../assets/Logo/Lamar.png";
+import lamar from "../../assets/Artboard 1Lamar logo.png";
 import porter from "../../assets/Logo/Porter.png";
 import wildthing from "../../assets/Logo/wildthing.png";
 import koffelo from "../../assets/Logo/Koffelo logo.png";
@@ -311,11 +311,11 @@ export const WorkPreview = ({ onNavigate }: WorkPreviewProps) => {
             >
               {/* Image container with overflow for parallax */}
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-gray-900">
-                <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute inset-0 overflow-hidden flex items-center justify-center">
                   <img
                     src={work.image}
                     alt={work.title}
-                    className="work-image w-full h-full object-contain object-center transition-all duration-700 group-hover:scale-105"
+                    className="work-image w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
                   />
                 </div>
 
@@ -371,7 +371,7 @@ export const WorkPreview = ({ onNavigate }: WorkPreviewProps) => {
                   <img
                     src={src}
                     alt={`Brand logo ${idx}`}
-                    className="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                    className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
                   />
                 </div>
               ))}
