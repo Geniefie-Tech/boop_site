@@ -2179,7 +2179,9 @@ export const WorkPage = () => {
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p className="text-white font-semibold">Click to view full gallery</p>
+                    <p className="text-white font-semibold">
+                      Click to view full gallery
+                    </p>
                   </div>
                 </div>
               </div>
