@@ -4,7 +4,7 @@ import { PageType } from "../../types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { IndianBackgroundPattern } from "../IndianBackgroundPattern";
-import backgroundVideo from "../../assets/8.mp4";
+import backgroundVideo from "../../assets/8.webm";
 import aahar from "../../assets/our work/Exhibition Stall/Aahar 2025, New Delhi/Screenshot 2025-12-26 180857.png";
 import indiatv from "../../assets/our work/social media/india tv/Screenshot 2025-12-26 172657.png";
 import iitf from "../../assets/our work/Exhibition Stall/IITF 2024, New Delhi/Screenshot 2025-12-26 181119.png";
@@ -97,116 +97,128 @@ export const Hero = ({ onNavigate }: HeroProps) => {
         "(prefers-reduced-motion: reduce)",
       ).matches;
 
-      // Horizontal scroll animation like Salt Agency for the heading
-      // if (
-      //   horizontalTextRef.current &&
-      //   heroRef.current &&
-      //   !prefersReducedMotion
-      // ) {
-      //   const lines =
-      //     horizontalTextRef.current.querySelectorAll(".heading-line");
+      if (prefersReducedMotion) return;
 
-      //   lines.forEach((line, index) => {
-      //     gsap.fromTo(
-      //       line,
-      //       {
-      //         x: 0, // Start at normal position (visible)
-      //       },
-      //       {
-      //         x: () => {
-      //           // Move left by different amounts for each line
-      //           return -300 * (index + 1);
-      //         },
-      //         ease: "none",
-      //         scrollTrigger: {
-      //           trigger: heroRef.current,
-      //           start: "top top",
-      //           end: "+=200%",
-      //           scrub: 1,
-      //           pin: true,
-      //         },
-      //       },
-      //     );
-      //   });
-      // }
-      //
-      if (
-        horizontalTextRef.current &&
-        heroRef.current &&
-        !prefersReducedMotion
-      ) {
+      // Set GSAP defaults for better performance
+      gsap.defaults({
+        force3D: true,
+        overwrite: "auto",
+      });
+
+      // Horizontal scroll animation with optimized settings
+      if (horizontalTextRef.current && heroRef.current) {
         const lines =
           horizontalTextRef.current.querySelectorAll(".heading-line");
 
-        // 🔒 ONE timeline, ONE pin
+        // Pre-calculate transforms to avoid jank
+        lines.forEach((line) => {
+          gsap.set(line, { force3D: true, willChange: "transform" });
+        });
+
+        // Single timeline with proper scrub smoothing
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top top",
-            end: "+=120%", // 🔧 shorter scroll distance = faster
-            scrub: 0.7,
+            end: "+=120%",
+            scrub: 1, // Smooth scrub for better performance
             pin: true,
-            // anticipatePin: 1, // extra smoothness
+            anticipatePin: 1, // Reduce jank when pinning
+            invalidateOnRefresh: true,
           },
         });
 
-        // Animate each line with different movement
+        // Batch animations into one timeline
         lines.forEach((line, index) => {
           tl.to(
             line,
             {
               x: -300 * (index + 1),
               ease: "none",
+              force3D: true,
             },
-            0, // 👈 all animations start together
+            0,
           );
         });
       }
 
+      // Create intro timeline for better batching
+      const introTl = gsap.timeline({
+        delay: 0,
+      });
+
       // Subtitle fade in
       if (subtitleRef.current) {
-        gsap.from(subtitleRef.current, {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          delay: 0.6,
-          ease: "power3.out",
+        gsap.set(subtitleRef.current, {
+          force3D: true,
+          willChange: "opacity, transform",
         });
+        introTl.from(
+          subtitleRef.current,
+          {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          0.6,
+        );
       }
 
       // CTA buttons animation
       if (ctaRef.current) {
-        gsap.from(ctaRef.current.children, {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          delay: 0.9,
-          ease: "power3.out",
+        gsap.set(ctaRef.current.children, {
+          force3D: true,
+          willChange: "opacity, transform",
         });
+        introTl.from(
+          ctaRef.current.children,
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out",
+          },
+          0.9,
+        );
       }
 
       // Stats animation
       if (statsRef.current) {
-        gsap.from(statsRef.current.children, {
-          y: 40,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          delay: 1.1,
-          ease: "power3.out",
+        gsap.set(statsRef.current.children, {
+          force3D: true,
+          willChange: "opacity, transform",
         });
+        introTl.from(
+          statsRef.current.children,
+          {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+          },
+          1.1,
+        );
       }
 
       // Carousel reveal
       if (carouselRef.current) {
-        gsap.from(carouselRef.current, {
-          x: 100,
-          opacity: 0,
-          duration: 1.2,
-          delay: 0.8,
-          ease: "power4.out",
+        gsap.set(carouselRef.current, {
+          force3D: true,
+          willChange: "opacity, transform",
         });
+        introTl.from(
+          carouselRef.current,
+          {
+            x: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power4.out",
+          },
+          0.8,
+        );
       }
     }, heroRef);
 

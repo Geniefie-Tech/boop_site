@@ -73,6 +73,20 @@ export const ContactPage = () => {
     if (!heroRef.current || !formRef.current || !containerRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Set GSAP defaults for better performance
+      gsap.defaults({
+        force3D: true,
+        overwrite: "auto",
+      });
+
+      // Prep elements for GPU acceleration
+      gsap.set(
+        ".hero-letter, .hero-subtitle, .floating-orb, .form-field, .contact-card, .particle, .map-section",
+        {
+          force3D: true,
+        },
+      );
+
       // Hero title animation - exploding letters
       gsap.from(".hero-letter", {
         scale: 0,
@@ -84,6 +98,7 @@ export const ContactPage = () => {
         },
         duration: 1,
         ease: "back.out(2)",
+        force3D: true,
       });
 
       // Subtitle fade in
@@ -93,9 +108,11 @@ export const ContactPage = () => {
         duration: 1,
         delay: 0.8,
         ease: "power3.out",
+        force3D: true,
       });
 
-      // Floating orbs
+      // Floating orbs - with will-change for smooth animation
+      gsap.set(".floating-orb", { willChange: "transform" });
       gsap.to(".floating-orb", {
         y: (i) => `random(-30, 30)`,
         x: (i) => `random(-30, 30)`,
@@ -105,6 +122,7 @@ export const ContactPage = () => {
         yoyo: true,
         ease: "sine.inOut",
         stagger: 0.2,
+        force3D: true,
       });
 
       // Form fields entrance
@@ -112,6 +130,7 @@ export const ContactPage = () => {
         scrollTrigger: {
           trigger: formRef.current,
           start: "top 80%",
+          invalidateOnRefresh: true,
         },
         x: (i) => (i % 2 === 0 ? -100 : 100),
         opacity: 0,
@@ -119,6 +138,7 @@ export const ContactPage = () => {
         stagger: 0.15,
         duration: 0.8,
         ease: "back.out(1.5)",
+        force3D: true,
       });
 
       // Contact info cards
@@ -126,6 +146,7 @@ export const ContactPage = () => {
         scrollTrigger: {
           trigger: ".contact-info",
           start: "top 80%",
+          invalidateOnRefresh: true,
         },
         scale: 0,
         rotation: 180,
@@ -133,10 +154,12 @@ export const ContactPage = () => {
         stagger: 0.2,
         duration: 1,
         ease: "elastic.out(1, 0.6)",
+        force3D: true,
       });
 
-      // Particle animation
+      // Particle animation - with will-change
       gsap.utils.toArray<HTMLElement>(".particle").forEach((particle, i) => {
+        gsap.set(particle, { willChange: "transform" });
         gsap.to(particle, {
           y: `random(-200, 200)`,
           x: `random(-200, 200)`,
@@ -147,6 +170,7 @@ export const ContactPage = () => {
           yoyo: true,
           ease: "sine.inOut",
           delay: i * 0.1,
+          force3D: true,
         });
       });
 
@@ -155,12 +179,14 @@ export const ContactPage = () => {
         scrollTrigger: {
           trigger: ".map-section",
           start: "top 80%",
+          invalidateOnRefresh: true,
         },
         scale: 0.8,
         opacity: 0,
         y: 100,
         duration: 1,
         ease: "power3.out",
+        force3D: true,
       });
 
       // Success message animation
@@ -170,6 +196,7 @@ export const ContactPage = () => {
           rotation: 720,
           duration: 1,
           ease: "elastic.out(1, 0.5)",
+          force3D: true,
         });
       }
     }, containerRef);

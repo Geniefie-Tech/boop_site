@@ -56,6 +56,7 @@ import btlDiwali1 from "../assets/our work/BTL Activities/Diwali  Merchandising 
 import btlDiwali2 from "../assets/our work/BTL Activities/Diwali  Merchandising Box – Paras Dairy/Screenshot 2025-12-31 153818.png";
 import btlGanesh1 from "../assets/our work/BTL Activities/Ganesh Chathurti campaign with ABP Majha/Screenshot 2025-12-31 153620.png";
 import btlGanesh2 from "../assets/our work/BTL Activities/Ganesh Chathurti campaign with ABP Majha/Screenshot 2025-12-31 153624.png";
+import ganeshVideo from "../assets/ganesh.webm";
 import btlChromebook1 from "../assets/our work/BTL Activities/Google Chromebook Pan INDIA Roadshow/Screenshot 2025-12-31 154006.png";
 import btlChromebook2 from "../assets/our work/BTL Activities/Google Chromebook Pan INDIA Roadshow/Screenshot 2025-12-31 154014.png";
 import btlHero1 from "../assets/our work/BTL Activities/Hero Electric Pan India Road Show 6 Months Campaign/Screenshot 2025-12-31 154024.png";
@@ -196,7 +197,7 @@ const ImageModal = ({
 
         {/* Main Media with scale animation */}
         <div className="relative bg-black rounded-lg overflow-hidden flex items-center justify-center min-h-[70vh]">
-          {currentImage.includes(".mp4") ? (
+          {currentImage.includes(".mp4") || currentImage.includes(".webm") ? (
             <video
               src={currentImage}
               controls
@@ -233,17 +234,28 @@ const ImageModal = ({
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`flex-shrink-0 h-16 w-16 rounded-lg overflow-hidden border-2 transition-all hover:scale-110 ${
+                className={`flex-shrink-0 h-16 w-16 rounded-lg overflow-hidden border-2 transition-all hover:scale-110 relative group ${
                   idx === currentIndex
                     ? "border-amber-500 scale-110 shadow-lg shadow-amber-500/50"
                     : "border-gray-600 hover:border-amber-400 opacity-60 hover:opacity-100"
                 }`}
               >
                 <img
-                  src={img.includes(".mp4") ? project.poster || img : img}
+                  src={
+                    img.includes(".mp4") || img.includes(".webm")
+                      ? project.poster || img
+                      : img
+                  }
                   alt={`Thumbnail ${idx + 1}`}
                   className="w-full h-full object-cover"
                 />
+                {(img.includes(".mp4") || img.includes(".webm")) && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
+                    <div className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center">
+                      <div className="w-0 h-0 border-l-3 border-l-white border-t-2 border-t-transparent border-b-2 border-b-transparent ml-0.5"></div>
+                    </div>
+                  </div>
+                )}
               </button>
             ))}
           </div>
@@ -560,7 +572,8 @@ export const WorkPage = () => {
         client: "ABP Majha",
         category: "BTL Activities",
         image: btlGanesh1,
-        images: [btlGanesh1, btlGanesh2],
+        poster: btlGanesh1,
+        images: [btlGanesh1, btlGanesh2, ganeshVideo],
       },
       {
         title: "Google Chromebook Roadshow",
@@ -2173,9 +2186,11 @@ export const WorkPage = () => {
                     )
                   }
                 >
-                  <img
-                    src={btlGanesh2}
-                    alt="Ganesh Campaign"
+                  <video
+                    src={ganeshVideo}
+                    autoPlay
+                    muted
+                    loop
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">

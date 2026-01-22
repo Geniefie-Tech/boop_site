@@ -2,17 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* GSAP Animation Performance Optimizations */
+:root {
+    /* Enable GPU acceleration for smooth animations */
+    --enable-gpu: auto;
+}
+
+/* Elements that will be animated should have this class */
+.gsap-animatable {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
 @layer base {
     * {
         scroll-behavior: smooth;
     }
 
+    /* Reduce CLS (Cumulative Layout Shift) during animations */
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 0;
+    }
+
     body {
         @apply antialiased;
+        /* Prevent layout shifts during animations */
+        overflow-x: hidden;
     }
 }
 
 @layer utilities {
+
     /* Fade In Animation */
     @keyframes fade-in {
         from {
@@ -93,6 +115,7 @@
 
     /* Glow Animation */
     @keyframes glow {
+
         0%,
         100% {
             box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
@@ -105,6 +128,7 @@
 
     /* Float Animation */
     @keyframes float {
+
         0%,
         100% {
             transform: translateY(0px);
@@ -143,6 +167,7 @@
 
     /* Gradient Animation */
     @keyframes gradient-x {
+
         0%,
         100% {
             background-position: 0% 50%;
@@ -187,12 +212,10 @@
 
     .animate-shimmer {
         animation: shimmer 2s infinite;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            transparent
-        );
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent);
         background-size: 1000px 100%;
     }
 
