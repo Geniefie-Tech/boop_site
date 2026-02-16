@@ -7,7 +7,6 @@ import sid from "../../assets/Siddharth.png";
 import neithal from "../../assets/neithal.png";
 import soman from "../../assets/Soman.png";
 import udit from "../../assets/Udit.png";
-import ali from "../../assets/Ali.png";
 import ayush from "../../assets/Ayush.png";
 import ravi from "../../assets/Ravi.png";
 import inderjit from "../../assets/inderjit.png";
@@ -61,12 +60,7 @@ const teamMembers: TeamMember[] = [
     role: "Graphic Designer",
     image: Kripal,
   },
-  {
-    id: 7,
-    name: "Ali Raza",
-    role: "Digital Marketing",
-    image: ali,
-  },
+
   {
     id: 8,
     name: "Saurabh Dixit",
