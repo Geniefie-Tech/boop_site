@@ -4,6 +4,7 @@ import { AboutPreview } from "../components/home/AboutPreview";
 import { ServicesSnapshot } from "../components/home/ServicesSnapshot";
 import { WhatDrivesUs } from "../components/home/WhatDrivesUs";
 import { StatisticsSection } from "../components/home/StatisticsSection";
+import { RecentHighlights } from "../components/home/RecentHighlights";
 import { ProcessSection } from "../components/home/ProcessSection";
 import { Impact } from "../components/home/Impact";
 import { WorkPreview } from "../components/home/WorkPreview";
@@ -24,6 +25,8 @@ export const HomePage = ({ onNavigate }: HomePageProps) => {
       <div className="h-30" />
 
       <StatisticsSection />
+
+      <RecentHighlights />
 
       {/* Spacer: 200px */}
       <div className="h-50" />

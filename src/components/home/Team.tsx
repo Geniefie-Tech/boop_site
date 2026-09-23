@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Jeet from "../../assets/Jeet.png";
+
 import Kripal from "../../assets/Kripal.png";
 import sid from "../../assets/Siddharth.png";
 import neithal from "../../assets/neithal.png";
@@ -47,12 +47,7 @@ const teamMembers: TeamMember[] = [
     role: "Software Engineer",
     image: neithal,
   },
-  {
-    id: 5,
-    name: "Jeet Kumar",
-    role: "Event Manager",
-    image: Jeet,
-  },
+
   {
     id: 6,
     name: "Kripal Singh",
